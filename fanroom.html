@@ -1,0 +1,60 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./css/fanroom.css">
+  <title name="fanroom_manage">ファンルームコメント管理 - SHOWROOM すこすこツール♪</title>
+</head>
+
+<body>
+  <div id="page_top">▲</div>
+  <div id="page_bottom">▼</div>
+  <div id="comment_area">
+    <div id="prev_comment_button" class="button_type_1">過去のコメント取得</div>
+  </div>
+  <div id="user_area" class="side_list">
+    <div id="user_list"></div>
+    <div class="button_box">
+      <div id="all_user_select_on" class="button">全て表示</div>
+      <div id="all_user_select_off" class="button">全て非表示</div>
+    </div>
+  </div>
+
+  <div id="black_list_area" class="side_list">
+    <div id="black_off_list"></div>
+    <div class="button_box">
+      <div id="black_list_add_user" class="button">リストに追加</div>
+      <div id="black_list_revemo_user" class="button">解除</div>
+    </div>
+    <div id="black_on_list">
+      <div class="user_id_title">ユーザーID</div>
+      <div class="user_name_title">名前</div>
+    </div>
+  </div>
+
+  <div id="delete_comment_area">
+    <div id="delete_log_reset" class="button button_off">削除済みコメントログをリセット</div>
+  </div>
+
+</body>
+<footer>
+  <div class="button_box_left">
+    <div id="comment_select" class="button button_type_1 button_off">範囲を選択する</div>
+    <div id="select_comment_delete" class="button button_type_1 button_off">選択コメントのみ表示</div>
+    <div id="comment_delete" class="button button_type_2 button_off">表示されているコメントを削除</div>
+    <div id="delete_cancel" class="button button_type_2 button_off">キャンセル</div>
+  </div>
+  <div class="button_box_right">
+    <div id="user_list_show" class="button button_off side_area">ユーザーリスト</div>
+    <div id="black_list_show" class="button button_off side_area">ブラックリスト</div>
+    <div id="delete_comment_show" class="button button_off">削除済みコメント</div>
+  </div>
+
+</footer>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/fanroom.js"></script>
+
+
+</html>

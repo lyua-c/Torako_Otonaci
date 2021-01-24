@@ -1,0 +1,215 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./css/option.css">
+  <title>オプション - SHOWROOM すこすこツール♪</title>
+</head>
+
+<body>
+
+  <div id="live_room_tools" class="tool_switch_box">
+    <h2>ライブルーム</h2>
+    <div class="option_box">
+      <p title="ライブ視聴ルームで2回ページの更新を行うと設定が反映されます。">視聴用機能(すこツーメイン機能)</p>
+      <button class="button_on" type="button" name="suko_listener" title="ライブ視聴ルームで2回ページの更新を行うと設定が反映されます。">ON</button>
+    </div>
+    <div class="option_box">
+      <p title="ライブ視聴ルームで2回ページの更新を行うと設定が反映されます。">配信者用機能</p>
+      <button class="button_on" type="button" name="suko_owner">ON</button>
+    </div>
+  </div>
+
+
+  <div id="icon_tools" class="tool_switch_box">
+    <h2>拡張アイコン 機能</h2>
+    <div class="option_box">
+      <p>再取得時間の表示</p>
+      <button class="button_on" type="button" name="re_get_time">ON</button>
+    </div>
+    <div class="option_box">
+      <p>Show Goldの表示</p>
+      <button class="button_on" type="button" name="show_gold">ON</button>
+    </div>
+    <div class="option_box">
+      <p>通知ログの表示</p>
+      <button class="button_on" type="button" name="noti_log">ON</button>
+    </div>
+  </div>
+
+
+  <div id="ex_button_tools" class="tool_switch_box">
+    <h2>通知機能</h2>
+    <div class="option_box">
+      <p>通知機能全般</p>
+      <button class="button_on" type="button" name="all_noti">ON</button>
+    </div>
+    <div class="option_box">
+      <div class="nest_show_button nest_show_button_on">▼</div>
+      <p>ライブ通知</p>
+      <button class="button_on" type="button" name="live_noti">ON</button>
+      <div class="option_in_box">
+        <p>ライブ開始通知</p>
+        <button class="button_on" type="button" name="live_start_noti">ON</button>
+      </div>
+      <div class="option_in_box">
+        <p>ライブ予定時間直前通知</p>
+        <button class="button_on" type="button" name="live_booking_noti">ON</button>
+        <br><p class="title_p">予定時間の</p>
+        <input class="select_number" type="number" name="live_booking_noti_num" value="10" min="1" max="60">
+        <span>秒前に通知</span>
+      </div>
+      <div class="option_in_box">
+        <p>通知を残す</p>
+        <button class="button_off" type="button" name="noti_inf_onlive">OFF</button>
+      </div>
+    </div>
+    <div class="option_box">
+      <div class="nest_show_button nest_show_button_on">▼</div>
+      <p>ファンルーム通知</p>
+      <button class="button_on" type="button" name="fr_noti">ON</button>
+      <div class="option_in_box">
+        <p>配信者入室</p>
+        <button class="button_on" type="button" name="fr_owner_in_noti">ON</button>
+      </div>
+      <div class="option_in_box">
+        <p>配信者コメント</p>
+        <button class="button_on" type="button" name="fr_owner_comm_noti">ON</button>
+      </div>
+      <div class="option_in_box">
+        <p>画像投稿</p>
+        <button class="button_on" type="button" name="fr_img_noti">ON</button>
+      </div>
+      <div class="option_in_box">
+        <p>ファンコメント</p>
+        <button class="button_on" type="button" name="fr_fan_comm_noti">ON</button>
+      </div>
+      <div class="option_in_box">
+        <p>指定文字コメント</p>
+        <button class="button_off" type="button" name="fr_text_comm_noti">OFF</button>
+        <input class="select_text"type="text" name="fr_text_comm" value="" placeholder="2文字以上入力してください">
+      </div>
+      <div class="option_in_box">
+        <p>通知制御</p>
+        <button class="button_off" type="button" name="fr_comm_noti_stop">OFF</button>
+        <br>
+        <p class="title_p">同じFRからの通知を</p>
+        <input class="select_number" type="number" name="fr_stop_fr_num" value="0" min="0" max="60">
+        <span>分間停止</span>
+        <br>
+        <p class="title_p">同じユーザーからの通知を</p>
+        <input class="select_number" type="number" name="fr_stop_user_num" value="0" min="0" max="60">
+        <span>分間停止</span>
+        <br>
+        <span>※0に設定で全通知ON</span>
+      </div>
+      <div class="option_in_box">
+        <p>通知を残す</p>
+        <button class="button_off" type="button" name="noti_inf_fr">OFF</button>
+      </div>
+    </div>
+    <div class="option_box">
+      <div class="nest_show_button nest_show_button_on">▼</div>
+      <p>捨て星･種時間通知</p>
+      <button class="button_on" type="button" name="time_noti">ON</button>
+      <div class="option_in_box">
+        <p>通知タイミング</p>
+        <input class="select_number" type="number" name="time_noti_num" value="45" min="1" max="60">
+        <span>分前</span>
+      </div>
+      <div class="option_in_box">
+        <p>通知を残す</p>
+        <button class="button_off" type="button" name="noti_inf_time">OFF</button>
+      </div>
+    </div>
+    <div class="option_box">
+      <div class="nest_show_button nest_show_button_on">▼</div>
+      <p>再取得解除時間通知</p>
+      <button class="button_off" type="button" name="reget_time_noti">OFF</button>
+      <div class="option_in_box">
+        <p>通知タイミング</p>
+        <input class="select_number" type="number" name="reget_time_noti_num" value="0" min="0" max="300">
+        <span>秒前</span>
+      </div>
+      <div class="option_in_box">
+        <p>通知を残す</p>
+        <button class="button_off" type="button" name="reget_time_noti_inf_time">OFF</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="etc_tools" class="tool_switch_box">
+    <h2>その他 機能</h2>
+    <div class="option_box">
+      <div class="nest_show_button nest_show_button_on">▼</div>
+      <p>フォローリスト並び替え</p>
+      <button class="button_on" type="button" name="follow_list_sort">ON</button>
+      <div class="option_in_box">
+        <p>自動並び替え時間</p>
+        <button class="button_off" type="button" name="auto_follow_list_sort">OFF</button>
+        <br>
+        <span>①</span>
+        <input class="select_number" type="number" name="auto_sort_h_1" value="0" min="0" max="23">
+        <span>時</span>
+        <input class="select_number" type="number" name="auto_sort_m_1" value="0" min="0" max="59">
+        <span>分</span>
+        <br>
+        <span>②</span>
+        <input class="select_number" type="number" name="auto_sort_h_2" value="0" min="0" max="23">
+        <span>時</span>
+        <input class="select_number" type="number" name="auto_sort_m_2" value="0" min="0" max="59">
+        <span>分</span>
+        <br>
+      </div>
+    </div>
+    <div class="option_box">
+      <p>フォローリストブックマーク機能</p>
+      <button class="button_on" type="button" name="bookmark">ON</button>
+    </div>
+    <div class="option_box">
+      <p>高機能タイムテーブル</p>
+      <button class="button_on" type="button" name="time_table">ON</button>
+    </div>
+    <div class="option_box owner_tools">
+      <p>ライブ予定管理(配信者)</p>
+      <button class="button_off" type="button" name="live_booking">OFF</button>
+    </div>
+    <div class="option_box owner_tools">
+      <p>ファンルーム管理(配信者)</p>
+      <div class="nest_show_button nest_show_button_on">▼</div>
+      <button class="button_off" type="button" name="fan_ma">OFF</button>
+      <div class="option_in_box">
+        <p>ブラックリスト機能</p>
+        <button class="button_on" type="button" name="black_list_switch">ON</button>
+      </div>
+      <div class="option_in_box">
+        <p>連続投稿禁止</p>
+        <button class="button_off" type="button" name="lot_comm_ban">OFF</button>
+        <br>
+        <input class="select_number" type="number" name="lot_comm_ban_time_num" value="60" min="1" max="180">
+        <span>秒間で</span>
+        <input class="select_number" type="number" name="lot_comm_ban_comm_num" value="5" min="2" max="20">
+        <span>コメントまで</span>
+      </div>
+      <div class="option_in_box">
+        <p>指定コメント削除</p>
+        <button class="button_off" type="button" name="designation_comm_ban">OFF</button>
+        <input class="select_text"type="text" name="designation_comm_ban_text" value="" placeholder="2文字以上入力してください">
+      </div>
+    </div>
+  </div>
+
+
+  <div id="option_reset_area">
+    <button class="manual">すこツールの使い方(説明書)を開く</button>
+    <button class="option">オプションの設定リセット</button>
+  </div>
+
+</body>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/option.js"></script>
+
+</html>

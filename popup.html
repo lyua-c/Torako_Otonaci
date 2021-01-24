@@ -1,0 +1,116 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./css/popup.css">
+  <title>SHOWROOM すこすこツール♪</title>
+</head>
+
+<body>
+
+  <!-- メインコンテンツ -->
+  <div id="main_content">
+    <div id="free_gift_num_area" class="content_box">
+      <div id="star_gift_num_box" class="free_gift_num_box">
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1_s.png" alt="">
+          <p id="free_gift_id_1" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1001_s.png" alt="">
+          <p id="free_gift_id_1001" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1002_s.png" alt="">
+          <p id="free_gift_id_1002" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1003_s.png" alt="">
+          <p id="free_gift_id_1003" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/2_s.png" alt="">
+          <p id="free_gift_id_2"  class="free_gift_num">?</p>
+        </div>
+        <p id="star_re_get_time_1" class="re_get_time_1">データなし</p>
+        <p id="star_re_get_time_2" class="re_get_time_2">データなし</p>
+        <button id="star_get_log_button" class="get_log_button" name="star_get_log">▼</button>
+      </div>
+
+      <div id="seed_gift_num_box" class="free_gift_num_box">
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1501_s.png" alt="">
+          <p id="free_gift_id_1501" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1502_s.png" alt="">
+          <p id="free_gift_id_1502" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1503_s.png" alt="">
+          <p id="free_gift_id_1503" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1504_s.png" alt="">
+          <p id="free_gift_id_1504" class="free_gift_num">?</p>
+        </div>
+        <div class="gift_num_box">
+          <img src="https://image.showroom-cdn.com/showroom-prod/assets/img/gift/1505_s.png" alt="">
+          <p id="free_gift_id_1505" class="free_gift_num">?</p>
+        </div>
+        <p id="seed_re_get_time_1" class="re_get_time_1">データなし</p>
+        <p id="seed_re_get_time_2" class="re_get_time_2">データなし</p>
+        <button id="seed_get_log_button" class="get_log_button" name="seed_get_log">▼</button>
+      </div>
+      <div id="star_get_log" class="get_log_box scroll"></div>
+      <div id="seed_get_log" class="get_log_box scroll"></div>
+      <div id="show_gold_area">
+        <p>Show Gold: ? G</p>
+      </div>
+      <button id="notification_log_button">通知ログ ▼</button>
+      <div id="notification_log" class="scroll">
+      </div>
+    </div>
+
+    <!-- フォローリスト -->
+    <div id="follow_room_area" class="content_box">
+      <div id="follow_room_header">
+        <ul>
+          <li class="genre_active" name="all">すべて</li>
+          <li name="star">オフィ</li>
+          <li name="seed">アマ</li>
+          <li name="onlive">ライブ</li>
+        </ul>
+      </div>
+      <ul id="follow_room_area"></ul>
+    </div>
+
+  </div> <!-- メインコンテンツ end -->
+
+  <!-- サイドメニュー -->
+  <div id="side_menu">
+    <img id="gift_open" name="free_gift_num_area" class="menu_on" src="./img/gift.png" alt="">
+    <img id="follow_open" name="follow_room_area" class="" src="./img/heart.png" alt="">
+    <img id="option_open" class="" src="./img/config.png" alt="">
+  </div> <!-- サイドメニュー end -->
+
+
+
+  <!-- コンテキスト -->
+  <img id="onlive_open" name="onlive_area" class="" src="./img/onlive.png" alt="">
+  <div id="context_box">
+    <div class="context_open_room">
+      <div><img title="開くルーム:星ルーム" class="context star on" name="1" src="./img/star.png"><img title="開くルーム:種ルーム" class="context seed" name="0" src="./img/seed.png"></div>
+      <div class="get_type" title="取得タイプ"><div class="radio"><input title="通常モードで指定数ルームを開きます。自動閉ONでも閉じません。" type="radio" name="get_type" value="0"> 通常</div><div class="radio"><input title="取得モードで指定数ルームを開きます。\n(映像･アバターOFF) \n開いたタブが閉じるまでの時間\n = 開くルーム数 × 30秒 + 10秒" type="radio" name="get_type" value="1" checked> 取得</div><div class="radio"><input title="捨てモードで指定数ルームを開きます。\n(映像･アバターOFF)\n開いたタブが閉じるまでの時間\n = 開くルーム数とは関係なく40秒固定" type="radio" name="get_type" value="2" > 捨て</div></div>
+      <div class=""><p>開くルーム数</p><input type="number" class="open_num" value="10" min="1" max="30"></div>
+      <div title="除外ルーム"><div name="omit_vb" title="ONで視聴ボーナス取得済みルームを除外" class="omit vb">視聴ボ</div><div name="omit_cl" title="ONで自動でルームを閉じる" class="omit close">自動閉</div></div>
+      <button class="open">OPEN</button>
+    </div>
+ </div>
+
+</body>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+
+</html>

@@ -1,0 +1,31 @@
+{
+   "background": {
+      "persistent": true,
+      "scripts": [ "js/jquery-3.2.1.min.js", "js/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "img/icon.png",
+      "default_popup": "popup.html",
+      "default_title": "SHOWROOM すこすこツール＋"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "js/jquery-3.2.1.min.js", "js/jquery-ui.min.js", "js/datepicker-ja.js", "js/common.js", "js/dom.js", "js/live_room.js", "js/live_open.js", "js/live_owner.js", "js/follow.js", "js/fanroom.js", "js/live_booking.js" ],
+      "matches": [ "https://www.showroom-live.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "SHOWROOMをもっともっと快適に楽しむためのツールです。",
+   "icons": {
+      "128": "img/icon.png",
+      "16": "img/icon.png",
+      "48": "img/icon.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjlvVdy0nV7UPpFrnUzG+/4gZGwyMHD9gbG4Zs2TN6q/XfHwk/d6ToyoW6sybdZel76WexW5M9wTKP7SeKlP+KgsyV4IGdKvk1T0OBR1QsMUI0YQgmN7G5YNfvX1DS94qfjO/zmzdQwhdYATp+/IhEdwK+TVBRMC+HHi43NVR4b+AilPCWcj1mav9S9eNzBDGVymG/JFwyNLj6WRsOuuOQ96CjCJDUKpH6dV4IKLsRqxoruiltu9nkl31DPjabb5qNNQAeo0KXdPKjhBfEnp8pTyKUKgmPUuUsJIxtaHG6g/+h+eDUrPrERlSiKUGhoZpyZ8woqD+yVFGrvKhgPKjDQIDAQAB",
+   "manifest_version": 2,
+   "name": "SHOWROOM すこすこツール＋",
+   "permissions": [ "storage", "notifications", "alarms", "tabs", "background" ],
+   "short_name": "すこぷら",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "3.2.10",
+   "web_accessible_resources": [ "*" ]
+}

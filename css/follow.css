@@ -1,0 +1,358 @@
+#room_list_box {
+  margin: 0px;
+  text-align: center;
+}
+
+#official_title {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  background: orange;
+  border-radius: 5px;
+  color: #eee;
+  font-weight: bold;
+}
+#amateur_title {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  background: green;
+  border-radius: 5px;
+  color: #eee;
+  font-weight: bold;
+}
+
+.room_list_box {
+  display: inline-block;
+  width: 40%;
+  margin: 10px 3%;
+  vertical-align: top;
+  text-align: left;
+}
+
+.room_list_box li {
+  position: relative;
+  padding: 5px;
+  border: solid 2px #ddd;
+  border-radius: 5px;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  margin: 5px 0;
+}
+
+.time_table_nest_button {
+  display: none;
+  position: absolute;
+  bottom:0px;
+  right: 0px;
+  font-size: 8px;
+  padding: 2px 4px;
+  text-align: center;
+  background: #133;
+  color:#eee;
+  border-radius: 3px;
+  user-select: none;
+  border: 0;
+  outline: 0;
+}
+.time_table_nest_area {
+  display: none;
+  width: 100%;
+  border: 1px solid #133;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 5px 0;
+}
+
+.time_table_room_img {
+  width: 210px;
+  height: 118px;
+}
+.time_table_room_name_live_at_box {
+  position: relative;
+  width: calc(100% - 220px);
+  height: 100%;
+  margin: 3px 0 0 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.time_table_room_name {
+  width:100%;
+  font-size: 14px;
+  vertical-align: top;
+  white-space: nowrap;
+  font-weight: 600;
+  color:#222;
+}
+.time_table_live_at {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 70%;
+  font-size: 12px;
+  vertical-align: top;
+  white-space: nowrap;
+  color:#eee;
+  padding: 2px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  text-align: center;
+}
+.time_table_live_at_nest {
+  position: relative;
+  display: inline-block;
+  width: 46%;
+  margin: 2px 1.9%;
+  font-size: 12px;
+  vertical-align: top;
+  white-space: nowrap;
+  color:#eee;
+  padding: 2px 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+.listcardinfo-menu img{
+  width: 24px;
+  margin: 8px 0;
+  vertical-align:bottom;
+}
+
+.follow_sort_target {
+  background-color:#DD1;
+}
+
+#follow_sort_button {
+  position: absolute;
+  top:10px;
+  right: 10px;
+  width: 90px;
+  height: 30px;
+  background: #607D8B;
+  border-radius: 2px;
+  margin: 0 5px;
+  cursor:pointer;
+}
+#follow_sort_button p{
+  color:#fff;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  line-height:30px;
+}
+#follow_sort_box {
+  display: none;
+  margin: 5px 0;
+  text-align: right;
+}
+.follow_sort_num {
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  color :#fff;
+  border-radius: 2px;
+  background-color: #607D8B;
+  margin: 0 10px;
+  vertical-align: top;
+}
+#follow_sort_save_button {
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  color :#fff;
+  border-radius: 2px;
+  background-color: #607D8B;
+  margin: 0 10px;
+  vertical-align: top;
+  border: 0;
+}
+#follow_sort_load_button {
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  color :#fff;
+  border-radius: 2px;
+  background-color: #607D8B;
+  margin: 0 10px;
+  vertical-align: top;
+  border: 0;
+}
+
+.load{
+  animation: load 1s ease infinite alternate;
+}
+
+@keyframes load {
+  50% {
+    opacity: 0;
+  }
+}
+
+#time_table_list {
+  position: relative;
+}
+
+#reset_button {
+  margin: 5px 0 5px 40%;
+  padding: 3px 5px;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+}
+#reset_button:active {
+  background-color: rgba(255,255,0,1.0);
+}
+
+/* ブックマーク */
+#bookmark_list {
+  position: absolute;
+  top:10px;
+  right: 190px;
+  width: 90px;
+  height: 30px;
+  background: #607D8B;
+  border-radius: 2px;
+  margin: 0 5px;
+}
+#bookmark_room_box {
+  display: none;
+  position: fixed;
+  top:100px;
+  right: 10px;
+  width: 200px;
+  min-height: 100px;
+  background: rgba(255,255,255,1);
+  border-radius: 5px;
+  margin: 5px;
+  border: 1px solid rgba(50,50,50,1);
+}
+#bookmark_room_box .room_name{
+  font-size: 14px;
+  width: 96%;
+  margin: 5px 2% 0 2%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+#bookmark_room_box .bookmark_list_box{
+  height: 150px;
+  margin: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#bookmark_room_box .bookmark_list .bookmark_add{
+  width: 90%;
+  margin: 5px 5%;
+  border-radius: 5px;
+  outline: none;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 12px;
+}
+#bookmark_room_box .bookmark_list .bookmark_add.on{
+  background-color: rgba(200,200,0,1);
+}
+.bookmark_box_close{
+  position: absolute;
+  top:-10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 7px;
+  font-weight: bold;
+  border-radius: 50px;
+  outline: none;
+}
+#bookmark_select option{
+  width: 100px;
+}
+#bookmark_list_button {
+  cursor:pointer;
+}
+#bookmark_list_button p{
+  color:#fff;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  line-height:30px;
+}
+
+#bookmark_list_add_box {
+  display: none;
+  position: fixed;
+  top:100px;
+  right: 10px;
+  width: 200px;
+  min-height: 100px;
+  background: rgba(255,255,255,1);
+  border-radius: 5px;
+  margin: 5px;
+  border: 1px solid rgba(50,50,50,1);
+}
+#bookmark_list_add_box .bookmark_add{
+  margin: 5px 5%;
+}
+#bookmark_list_add_box .bookmark_add input{
+  width: 70%;
+}
+#bookmark_list_add_box .bookmark_add button{
+  display: inline-block;
+  font-size: 9px;
+  width: 20%;
+  margin: 0 0 0 2%;
+}
+
+#bookmark_list_add_box .bookmark_list_add_list{
+  height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#bookmark_list_add_box .bookmark_list_add_list_in_box{
+  position: relative;
+  margin: 5px 2%;
+  overflow: hidden;
+}
+#bookmark_list_add_box .bookmark_list_add_list_in_box button.select{
+  display: inline-block;
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  outline: none;
+  border-radius: 5px;
+}
+#bookmark_list_add_box .bookmark_list_add_list_in_box button.select.on{
+  background-color: #dd0;
+}
+#bookmark_list_add_box .bookmark_list_add_list_in_box button.close{
+  position: absolute;
+  top:2px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  font-size: 5px;
+  text-align: center;
+  border-radius: 50px;
+  outline: none;
+}
+
+.bookmark_add_button.on {
+  border-radius: 30px;
+  background-color: #dd0;
+}
+
+.bookmark_name_text {
+  width: 80%;
+  margin: 5px 10%;
+  padding: 5px 0;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 10px;
+  background-color: #dd0;
+}

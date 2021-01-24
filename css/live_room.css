@@ -1,0 +1,1179 @@
+/* ----------------
+  共通
+------------------*/
+ .scroll::-webkit-scrollbar{
+  width: 8px;
+}
+ .scroll::-webkit-scrollbar-thumb{
+  background-color: rgba(200, 200, 200, 0.5);
+  border-radius: 2px;
+  cursor:pointer;
+}
+ .scroll::-webkit-scrollbar-thumb:hover{
+  background-color: rgba(200, 200, 0, 0.5);
+}
+
+#suko_area {
+  position: absolute;
+  top:0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+.suko_content {
+  pointer-events: auto;
+}
+
+
+/* ----------------
+  アイコンエリア
+------------------*/
+#icon_area {
+  position: absolute;
+  /* top:90%; */
+  top:80%;
+  /* left:25px; */
+  left:100px;
+  z-index: 950;
+  cursor:auto;
+  user-select: none;
+  white-space: nowrap;
+  /* overflow: hidden; */
+}
+#icon_area #icon_button{
+  display: inline-block;
+  z-index: 950;
+  width: 50px;
+  margin: 0 2px;
+  height: 45px;
+  background: #111;
+  opacity: 0.3;
+  border-radius: 10px;
+  cursor:pointer;
+  vertical-align: top;
+  border: 0;
+  outline: 0;
+}
+#icon_area #icon_button.mini{
+  display: inline-block;
+  width: 40px;
+  height: 35px;
+}
+#icon_area #icon_button:hover {
+  opacity: 0.8;
+  background: #b0b603;
+}
+#icon_area #icon_button.on {
+  opacity: 0.6;
+  background: #b0b603;
+}
+#icon_area #icon_button.stop {
+  opacity: 0.6;
+  background: red;
+}
+#icon_area .icon_list{
+  display: inline-block;
+  vertical-align: top;
+}
+#icon_area .icon_box{
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 40px;
+  height: 40px;
+  transition: 0.5s;
+  font-size:11px;
+  margin-right: 7px;
+}
+#icon_area .icon_box:hover{
+  width: 50px;
+  height: 50px;
+  font-size:14px;
+}
+#icon_area .icon_box.end{
+  font-size:9px;
+}
+#icon_area .icon_box.end:hover{
+  font-size:11px;
+}
+#icon_area .icon_box.mini{
+  width: 30px;
+  height: 30px;
+  font-size:10px;
+}
+#icon_area .icon_box.mini:hover{
+  width: 40px;
+  height: 40px;
+  font-size:13px;
+}
+#icon_area .icon_box.mini.end{
+  font-size:8px;
+}
+#icon_area .icon_box.mini.end:hover{
+  font-size:10px;
+}
+
+
+
+#icon_area .icon{
+  overflow:none;
+  width: 100%;
+  height: 100%;
+  margin: 0 2px;
+  padding: 3px;
+  text-align: center;
+  cursor:pointer;
+  user-select: none;
+  transition: 0.5s;
+  vertical-align: top;
+  border-radius: 40px;
+  background-color: rgba(20, 50, 50, 0.8);
+}
+#icon_area .icon_box p {
+  position: absolute;
+  top: calc(50% + 4px);
+  left: calc(50% + 4.5px);
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+  font-weight: bold;
+}
+.view_bonus_text,.auto_count_text{
+  color: #eee;
+}
+#icon_area .on {
+  background: #b0b603;
+}
+#icon_area .stop {
+  color: #111;
+  background: red;
+}
+#icon_area .etc {
+  background: #193c71;
+}
+#icon_area .set {
+  animation: set 1s infinite;
+}
+@keyframes set{
+  50%{
+    background: #193c71;
+  }
+}
+
+/* ----------------
+  コンフィグ
+------------------*/
+#config_area {
+  position: fixed;
+  /* width: 400px; */
+  bottom:calc(5% + 43px);
+  max-height: 50%;
+  border-radius: 10px;
+  padding: 5px;
+  z-index: 955;
+  overflow:visible;
+  transition: 0.5s;
+}
+#config_area.show{
+  left: -10px;
+}
+#config_area.hide{
+  left: -300px;
+}
+#config_area .menu,#config_area .close  {
+  width: 110px;
+  background-color: rgba( 10,10,10,0.95 );
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 5px;
+  border-radius: 0 5px 5px 0;
+  margin: 0 0 2px 0;
+  text-align: center;
+}
+#config_area .menu:hover,#config_area .close:hover {
+  padding: 3px 10px;
+  background-color: rgba( 10,10,10,1.0 );
+  color: #ee0;
+}
+#config_area .menu_on {
+  padding: 3px 10px;
+  background-color: rgba( 10,10,10,1.0 );
+  color: #ee0;
+}
+#config_area .close {
+  width: 40px;
+}
+
+#config_area .right_box {
+  position: absolute;
+  top:5px;
+  left: 140px;
+  max-width: 160px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#config_area .config_box {
+  width: 150px;
+  display: none;
+  overflow-x: hidden;
+}
+#config_area .config {
+  background-color: rgba( 10,10,10,0.95 );
+  border-radius: 10px;
+  padding: 3px 5px;
+  margin-bottom:2px;
+}
+#config_area .config p{
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+}
+#config_area .config button{
+  width: 90%;
+  margin: 3px 5%;
+  font-size: 10px;
+  border-radius: 10px;
+  cursor:pointer;
+  border: 0;
+  outline: 0;
+}
+#config_area .config .number{
+  padding: 0 10px;
+  margin: 0 10px 0 5%;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 10px;
+}
+#config_area .config span{
+  font-size: 12px;
+  color: #eee;
+}
+/* #config_area .config button:hover {
+  color: #111;
+  background-color: rgba( 200,200,20,0.9 );
+} */
+#config_area .config_on {
+  color: #111;
+  background-color: rgba( 200,200,20,0.9 );
+}
+#config_area .config_off {
+  color: #fff;
+  background-color: rgba( 50,50,50,0.9 );
+}
+#config_area .config_none {
+  color: #fff;
+  background-color: rgba( 20,20,20,0.9 );
+}
+#config_area .switch_1 {
+  color:#eee;
+  background-color: rgba( 30,30,100,0.9 );
+}
+#config_area .input_text {
+  width: 90%;
+  padding: 2px 2%;
+  margin: 2px 3%;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  color: #111;
+  font-size: 12px;
+  background-color: rgba( 240,240,240,0.9 );
+}
+
+/* 効果音ボリューム */
+.se_volume {
+  width: 85%;
+  /* height: 10px; */
+  margin: 5px 0 10px 5%;
+}
+.se_volume .ui-slider-range { background: #E38692; }
+.se_volume .ui-slider-handle {
+  width: 5px;
+  height: 11px;
+  top: -4px;
+  margin-left: 0;
+  border-color: #FF4000;
+  background: #FF4000;
+  border-radius: 1px;
+  moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+}
+.ui-slider-horizontal {
+  height: 0.2em;
+}
+
+/* ----------------
+  ギフトボックス
+------------------*/
+#gift_area {
+  display: none;
+  position: absolute;
+  top:calc(60% - 280px);
+  left: calc(2% + 260px);
+  width: 270px;
+  background-color: rgba( 20, 50, 50, 0.8 );
+  border-radius: 5px;
+  padding: 2px;
+  cursor:move;
+  user-select: none;
+  overflow: hidden;
+}
+#gift_area .free_gift_box {
+  width: 94%;
+  margin: 2% 3% 0 3%;
+  text-align: center;
+  overflow: hidden;
+}
+#gift_area .free_gift {
+  display: inline-block;
+  position: relative;
+  width: 14%;
+  height: 100%;
+  margin: 0 1%;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: top;
+}
+#gift_area .free_gift img{
+  width: 100%;
+  margin: 0;
+  cursor:pointer;
+}
+#gift_area .free_gift p{
+  position: inline-block;
+  width: 100%;
+  font-size: 9px;
+  text-align: center;
+  opacity: 1.0;
+  color: #fff;
+  margin: -8px 0 0 0;
+  user-select: none;
+  white-space: nowrap;
+  /* white-space: nowrap; */
+}
+#gift_area .pay_gift_box {
+  width: 94%;
+  height: 200px;
+  margin: 3% 3% 0 3%;
+  padding: 1% 0 0 0;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-top: 1px #eee solid;
+}
+#gift_area .pay_gift {
+  display: inline-block;
+  position: relative;
+  width: 16%;
+  padding:0 2%;
+  margin: 0.5% 0;
+  text-align: center;
+}
+#gift_area .pay_gift .gift_img{
+  width: 100%;
+  margin: 0;
+  cursor:pointer;
+}
+#gift_area .pay_gift p{
+  position: inline-block;
+  width: 100%;
+  font-size: 60%;
+  text-align: center;
+  opacity: 1.0;
+  color: #fff;
+  margin: -4px 0 0 0;
+  user-select: none;
+}
+#gift_area .user_name,#gift_area .show_gold,#gift_area .user_point {
+  width: 100%;
+  margin:3px 0;
+  font-size: 80%;
+  color: #fff;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+  cursor:auto;
+}
+#gift_area .pay_gift.on,#gift_area .free_gift.on{
+  background-color: rgba( 200,200,20,0.9 );
+  border-radius: 50px;
+}
+#high_gift_dialog {
+  text-align: center;
+}
+.ui-dialog-title{
+  text-align: center;
+}
+#high_gift_dialog p{
+  font-size: 100%;
+  text-align: center;
+}
+.ui-dialog-buttonset {
+  width: 100%;
+  text-align: center;
+}
+.dialog_button {
+  width: 40%;
+  margin: 5px 5%;
+  text-align: center;
+}
+.dialog_timer_b {
+  width: 30%;
+  margin: 5px 1%;
+  text-align: center;
+}
+.dialog_timer_b.on {
+  background-color: yellow;
+}
+#info_area {
+  text-align: center;
+}
+#info_area .info{
+  font-size: 0.7em;
+}
+.anime_gift {
+  position: absolute;
+  bottom:0px;
+  right: 0px;
+  width: 10px;
+  height: 10px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ----------------
+  取得ログ
+----------------  */
+
+#get_log_area {
+  display: none;
+  position: absolute;
+  width: 240px;
+  top:calc(60% - 300px);
+  left: calc(40%);
+  background-color: rgba( 20, 50, 50, 0.8 );
+  border-radius: 5px;
+  padding: 5px;
+  user-select: none;
+  cursor:move;
+  z-index: 950;
+}
+#get_log_area p {
+  cursor:auto;
+}
+#get_log_area .star,#get_log_area .seed {
+  display: inline-block;
+  vertical-align: top;
+  width: 49.4%;
+  border-radius: 3px;
+  user-select: none;
+}
+#get_log_area .star {
+  background-color: rgba( 252,212,27,0.8 );
+  margin: 0 1% 0 0;
+}
+#get_log_area .seed {
+  background-color: rgba( 170,204,59,0.8 );
+}
+#get_log_area .title{
+  width: 100%;
+  text-align: center;
+  color: #ddd;
+  background-color: rgba( 10,40,40,0.4 );
+  font-size: 90%;
+  font-weight: bold;
+}
+#get_log_area .text{
+  width: 100%;
+  margin: 0;
+  color: #111;
+  text-align: center;
+  font-size: 90% ;
+  font-weight: bold;
+}
+#get_log_area .log_show {
+  text-align: center;
+  font-size: 100% ;
+  color: #eee;
+  background-color: rgba( 20,20,20,0.8 );
+  cursor:pointer;
+}
+#get_log_area .log {
+  width: 100%;
+  height: 100px;
+  text-align: left;
+  font-size: 100%;
+  color: #111;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+#get_log_area .star_log {
+  background-color: rgba( 252,212,27,0.8 );
+}
+#get_log_area .seed_log {
+  background-color: rgba( 170,204,59,0.8 );
+}
+#get_log_area .log_text_box {
+  width: 92%;
+  margin: 2px 2% 0 2%;
+  padding: 2px 2%;
+}
+#get_log_area .log_type {
+  display: inline-block;
+  width: 35%;
+  font-size: 90%;
+  margin-right: 5%;
+  text-align: center;
+  background-color: rgba( 10,10,10,0.6 );
+  border-radius: 5px;
+  color: #eee;
+}
+#get_log_area .log_text {
+  display: inline-block;
+  width: 60%;
+  font-size: 90%;
+  text-align: left;
+}
+#get_log_area .log_border {
+  width: 100%;
+  border: 1px solid #eee;
+  margin: 2px 0;
+}
+
+/* ----------------
+ ビデオコントローラー
+ ----------------  */
+#video_con_box {
+ position: relative;
+ height: 40px;
+ user-select: none;
+ background-color: rgb( 0,0,0);
+ opacity: 0;
+}
+#video_con_box:hover{
+  opacity: 0.9;
+}
+#video_con_box.focus{
+  opacity: 0.9;
+}
+#video_con_box.full_on {
+ position:fixed;
+ width:100%;
+ bottom:0px;
+ z-index: 962;
+ left:0px;
+ margin-left:0px;
+}
+#video_con_box.full_off {
+ position:absolute;
+ width: 590px;
+ top:calc(98px + 320px);
+ z-index: 48;
+ left:50%;
+ margin-left: -320px;
+}
+#video_con_box .comm_box{
+  position: absolute;
+  top:0px;
+  left:0px;
+}
+#video_con_box.full_on .comm_box{
+  position: absolute;
+  top:0px;
+  left:30%;
+}
+#video_con_box input{
+ width: 300px;
+ height: 26px;
+ padding: 3px 5px;
+ margin: 4px 0px 4px 10px;
+ z-index: 49;
+ border-radius: 5px 0 0 5px;
+ background-color: rgb(10,10,10);
+ color: #eee;
+ border: 0;
+ outline: 0;
+}
+#video_con_box.full_on input{
+ width: 400px;
+}
+#video_con_box button {
+ width: 50px;
+ z-index: 49;
+ border-radius: 0 5px 5px 0;
+ background-color: rgb(150,150,150);
+ color: #eee;
+ text-align: center;
+ padding: 5px 5px;
+ font-size: 15px;
+ border: 0;
+ outline: 0;
+}
+#video_con_box button.on {
+  background-color:rgb(10,30,30);
+}
+#video_con_box .img_box{
+ position: absolute;
+ top:0px;
+ right:10px;
+}
+#video_con_box img{
+ width: 30px;
+ height: 30px;
+ padding: 5px;
+ z-index: 49;
+ opacity: 0.6;
+ margin: 0 3px;
+ cursor:pointer;
+ user-select: auto;
+}
+#video_con_box .sending,#js-room-comment .sending{
+  animation: sending 1s infinite alternate;
+}
+@keyframes sending{
+  from{
+    opacity: 1;
+    background-color: red;
+    pointer-events: none;
+  }
+  to{
+    opacity:0.3;
+    background-color: red;
+    pointer-events: none;
+  }
+}
+
+
+/* ----------------
+  ビデオ非表示テキスト
+ ----------------  */
+#video_off_text {
+  position: absolute;
+  top:40%;
+  width: 100%;
+  text-align: center;
+  color: #eee;
+  font-size: 200%;
+  font-weight: bold;
+  /* z-index: 900; */
+}
+
+/* ----------------
+  ユーザーライブランキング
+ ----------------  */
+#user_live_rank_show {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+}
+#user_live_rank_show.on {
+  background-color: rgba( 200, 200, 10, 0.8 );
+}
+#user_live_rank_note {
+  width: 100%;
+  position: relative;
+}
+#user_live_rank_note .note {
+  color: #dd0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 6px;
+  font-weight: bold;
+  margin: 1px 5px;
+}
+#user_live_rank_note .reload {
+  position: absolute;
+  top:0px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  cursor:pointer;
+}
+#user_live_rank_list {
+  display: none;
+  overflow :hidden;
+  margin: 10px 5px 5px;
+}
+#user_live_rank_list .rank_box {
+  display: none;
+  width: 100%;
+  margin: 3px 0;
+  font-size: 12px;
+  color: #eee;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#user_live_rank_list .rank {
+  display: inline-block;
+  color: #dd0;
+  width: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+#user_live_rank_list .point {
+  display: inline-block;
+  width: 70px;
+  margin: 0 0 0 5px;
+  color: #eee;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#user_live_rank_list .ava {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 3px 0 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#user_live_rank_list .name {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #1DE9B6;
+}
+#user_live_rank_list_box {
+  overflow :auto;
+  overflow-x :hidden;
+}
+
+/* ----------------
+  イベントランキング
+ ----------------  */
+#event_ranking_dialog {
+  width: 700px;
+  height: 100%;
+  margin: 0 auto;
+}
+#event_ranking_note {
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  padding: 3px 0;
+  margin: 5px 0;
+  opacity: 1;
+  background-color: rgba(200, 200, 0, 1);
+  border-radius: 5px;
+  color: #111;
+}
+#event_ranking_note .rank{
+  display: inline-block;
+  width: 28px;
+  margin: 0 0 0 5px;
+}
+#event_ranking_note .name{
+  display: inline-block;
+  width: 295px;
+  margin: 0 0 0 15px;
+}
+#event_ranking_note .point{
+  display: inline-block;
+  width: 125px;
+  margin: 0 0 0 35px;
+}
+#event_ranking_note .gap{
+  display: inline-block;
+  width: 125px;
+  margin: 0 0 0 15px;
+}
+#event_ranking_area {
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+#event_ranking_area .event_rank_box{
+  width: 100%;
+  height: 30px;
+  opacity: 1;
+  font-size: 14px;
+  color: #eee;
+  text-align: left;
+  vertical-align: middle;
+  margin: 5px 0;
+}
+#event_ranking_area .rank{
+  display: inline-block;
+  width: 30px;
+  padding: 3px;
+  background-color: rgba(200, 200, 0, 0.8);
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  color: #111;
+}
+#event_ranking_area .name{
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin: 0 0 0 10px;
+}
+#event_ranking_area .point{
+  display: inline-block;
+  width: 130px;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin: 0 0 0 30px;
+}
+#event_ranking_area .gap{
+  display: inline-block;
+  width: 130px;
+  margin: 0 0 0 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+#event_ranking_area .link{
+  display: inline-block;
+  width: 30px;
+  margin: 0 10px 0 0;
+  vertical-align: middle;
+  cursor:pointer;
+}
+#event_next_rank_point {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 1;
+  margin: 15px 0;
+  background-color: rgba(200, 200, 0, 1);
+  padding: 2px 0px;
+  border-radius: 5px;
+  color: #111;
+  cursor:pointer;
+  user-select: none;
+}
+
+
+/* ----------------
+ その他
+ ----------------  */
+
+/* 時間表示 */
+.label-room {
+  margin-right: 2px;
+}
+
+/* イベント詳細サイズ */
+ #js-genre-section-3 td  {
+  height: auto;
+}
+
+/* コメントボックスカラー */
+.comment_box_color_1,.comment_box_color_2,.comment_box_color_3 {
+  border-radius: 5px;
+}
+.comment_box_color_1 input{
+  background-color: rgba( 240,240,240,0.9 );
+  color:#111;
+}
+.comment_box_color_2 input{
+  background-color: rgba( 20,20,20,0.9 );
+  color:#eee;
+}
+#js-room-comment button {
+  min-width: 40px;
+  text-align: center;
+}
+#js-chat-input-comment.comment_over {
+  background-color: rgba( 128,0,0,0.9 );
+}
+
+/* ポップアップエリア */
+#popup_area {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  margin: 5px;
+  cursor:none;
+  border-radius: 5px;
+  cursor:auto;
+  pointer-events: none;
+}
+#popup_area.border {
+  border: 1px #111 solid;
+  cursor:move;
+
+}
+#popup_area_posi{
+  width: 100%;
+  background-color: rgba( 20, 20, 20, 0.9 );
+  cursor:move;
+  text-align: center;
+  color: #eee;
+  padding: 10px 0;
+}
+.select_comm {
+  background-color: rgba(200, 200, 0, 0.2);
+  border-radius: 2px;
+}
+#room-comment-log-list .symbol_comm{
+  display: none;
+}
+
+.pop_box {
+  position: relative;
+  width: 194px;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 2px 0;
+  background-color: rgba( 20, 20, 20, 0.9 );
+}
+.pop_box img{
+  display: inline-block;
+  width: 30px;
+  vertical-align: middle;
+}
+.pop_box p{
+  display: inline-block;
+  width: 150px;
+  margin: 0 4px;
+  font-size: 14px;
+  color: #eee;
+  vertical-align: middle;
+}
+
+/* 公式アイコンリスト */
+.footer-menu.hide {
+  margin-bottom: -65px;
+  transition: 0.5s;
+}
+.footer-menu.show {
+  margin-right: 0px;
+  transition: 0.5s;
+}
+
+/* 取得済みアイコン */
+#get_icon_area {
+  position: absolute;
+  width: 41px;
+  top: 50px;
+  left:calc(315px);
+  background-color: rgba( 20, 20, 20, 0.9 );
+  border-radius: 20px;
+  padding: 5px 5px 2px 5px;
+  z-index: 60;
+}
+#get_icon_area img{
+  width: 26px;
+  height: 26px;
+  margin: 0 5px;
+  padding: 2px;
+  border-radius: 50px;
+  background-color: rgba(150, 150, 20, 0);
+}
+#get_icon_area img.get{
+  background-color: #b0b603;
+}
+
+#live_view_mode {
+  position: absolute;
+  top: 150px;
+  left: calc(50%);
+  transform:  translateX(-50%);
+  -webkit- transform: translateX(-50%);
+  position: absolute;
+  text-align: center;
+  z-index: 998;
+  border-radius: 10px;
+  padding: 5px 20px;
+  background-color: rgba(150, 150, 20, 0.8);
+  color: #111;
+  font-size: 26px;
+  cursor:pointer;
+}
+
+/* アバターを戻す */
+#ava_enter_box {
+  position: absolute;
+  top: 3px;
+  left: 10px;
+  z-index: 90;
+}
+#ava_enter {
+  padding: 0px 5px;
+  border-radius: 10px;
+  color: #eee;
+  background-color: red;
+  font-size: 16px;
+  border: 0;
+  outline: 0;
+}
+#ava_enter_close {
+  padding: 0px 5px;
+  border-radius: 20px;
+  color: #eee;
+  margin: 0 0 0 10px;
+  background-color: #111;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+}
+
+/* 次のイベントリンク */
+#next_event_link {
+  width: 100%;
+  margin: 0;
+  background-color: rgba(10, 30, 30, 0.6);
+  padding: 3px 0;
+  text-align: center;
+}
+#next_event_link a{
+  font-size: 14px;
+  color: #dd0;
+}
+
+/* -------------------
+ z-index
+----------------  */
+#popup_area {
+  z-index: 51;
+}
+#gift_area,#get_log_area {
+  z-index: 50;
+}
+
+/* --------------------------------  */
+
+/* -------------------
+ コンテキストメニュー
+----------------  */
+#context_box {
+  display: none;
+  position: fixed;
+  top:0px;
+  left:0px;
+  background-color: rgba( 20, 50, 50, 0.8 );
+  border-radius: 10px;
+  cursor:move;
+}
+#context_box .context_in_box{
+  padding: 5px;
+  border-radius: 10px;
+}
+#context_box .gift_num {
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+}
+#context_box button {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  width: 100%;
+  padding: 2px 0;
+  margin: 5px 0 4px 0;
+  background-color: rgba( 40, 40, 40, 0.8 );
+  color: #eee;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+}
+#context_box button:hover {
+  background-color: rgba( 200, 200, 10, 0.8 );
+  color: #111;
+}
+.context_close {
+  position: absolute;
+  top:-11px;
+  right: -11px;
+  color: #eee;
+  font-size: 12px;
+  border-radius: 30px;
+  padding: 0px 5px;
+  font-weight: 600;
+  background-color: rgba( 10, 10, 10, 0.8 );
+  cursor:pointer;
+
+}
+
+/* ライブを開く */
+.context_open_room{
+  width: 150px;
+  font-size: 12px;
+  /* margin-:calc(50% - 60px); */
+}
+.context_open_room img{
+  width: 30px;
+  margin: 5px 7px 5px 22px;
+  padding: 3px;
+  border-radius: 30px;
+  text-align: center;
+  cursor:pointer;
+  /* margin-:calc(50% - 60px); */
+}
+.context_open_room .on{
+  background-color: rgba( 200, 200, 10, 0.8 );
+}
+.context_open_room p{
+  display: inline-block;
+  width:calc(60%);
+  color: #eee;
+  border-radius: 10px 0 0 10px;
+  background-color: rgba( 40, 60, 60, 0.8 );
+  padding: 2px 0;
+  text-align: center;
+}
+.context_open_room .open_num,.context_open_room .wait_num,.context_open_room input{
+  width:calc(39%);
+  border-radius: 0 10px 10px 0;
+  border: 0;
+  outline: 0;
+  padding: 4px 0;
+  text-align: center;
+  cursor:pointer;
+}
+.context_open_room .omit {
+  display: inline-block;
+  width: 45%;
+  margin: 10px 1.9% 0px 1.9%;
+  font-size: 12px;
+  color: #eee;
+  background-color: rgba( 40, 60, 60, 0.8 );
+  text-align: center;
+  border-radius: 10px;
+  cursor:pointer;
+}
+.context_open_room .omit.on {
+  background-color: rgba( 200, 200, 10, 0.8 );
+  color: #111;
+}
+.context_open_room .get_type{
+  width: 90%;
+  border-radius: 20px;
+  padding: 3px 5%;
+  margin: 0 0 5px 0;
+  background-color: rgba( 40, 60, 60, 0.8 );
+}
+.context_open_room .get_type .radio{
+  width: 33%;
+  display: inline-block;
+  font-size: 11px;
+  color: #eee;
+}
+.context_open_room .get_type input{
+  width: 10px;
+  height: 10px;
+  text-align: center;
+}
+
+
+ /* z-index */
+ #context_box {
+   z-index: 999;
+ }

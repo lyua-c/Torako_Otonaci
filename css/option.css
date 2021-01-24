@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  width: 80%;
+  /* height: 2000px; */
+  padding: 10px 10%;
+  background: #ddd;
+}
+
+input {
+  margin: 5px 0;
+}
+
+.title_p{
+  display: inline-block;
+  text-align: center;
+  width: 50%;
+}
+
+.tool_switch_box {
+  position: relative;
+  width: 500px;
+  text-align: center;
+  padding: 0 0 10px 0;
+  border-radius: 20px;
+  margin: 30px;
+  border: 1px #133 solid;
+}
+.tool_switch_box h2{
+  width: 500px;
+  height: 30px;
+  background-color: #133;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  font-size: 24px;
+  color: #eee;
+  border-radius: 20px 20px 0 0;
+}
+
+.option_box {
+  position: relative;
+  background: #ccc;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 0;
+  margin: 5px 0;
+}
+.option_box p{
+  width: 300px;
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+.option_box button{
+  width: 100px;
+  padding: 5px 10px;
+  font-size: 16px;
+  text-align: center;
+  color: #111;
+  border-radius: 10px;
+  font-weight: bold;
+  outline:none;
+  vertical-align: middle;
+  margin: 0;
+}
+.option_box img{
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  background-color: #244;
+  border-radius: 50px;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.button_on {
+  background: yellow;
+}
+.button_off {
+  background: red;
+}
+
+.option_in_box {
+  background: #bbb;
+  margin:10px 10px 0 10px;
+  padding: 2px 0;
+}
+.nest_show_button {
+  position: absolute;
+  top:15px;
+  left: 10px;
+  font-size: 20px;
+}
+.nest_show_button_on {
+  color:#133;
+}
+.nest_show_button_off {
+  color:#ddd;
+}
+
+.option_in_box span {
+  font-size: 16px;
+}
+
+.select_number{
+  width: 60px;
+  padding: 2px;
+  font-size: 16px;
+  border-radius: 5px;
+  color:#000;
+}
+
+.select_text{
+  width: 90%;
+  margin: 10px 10px;
+  padding: 2px 0;
+  font-size: 16px;
+  border-radius: 5px;
+  color:#000;
+}
+
+#option_reset_area {
+  width: 100%;
+  text-align: center;
+}
+#option_reset_area button{
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 5px 30px;
+  background-color: #133;
+  color: #eee;
+  text-align: center;
+}
+
+.select_option{
+  width: 100px;
+  padding: 2px;
+  font-size: 16px;
+  border-radius: 5px;
+  color:#000;
+  margin: 2px 0;
+}
+
+.hint {
+  position: absolute;
+  top: 8px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 30px;
+  cursor:pointer;
+}
+.hint:hover {
+  background-color: rgba(200, 200, 0, 0.8);
+}
+
+/* 追加設定 */
+#icon_tools {
+  /* display: none; */
+}
+.owner_tools {
+  /* display: none; */
+}

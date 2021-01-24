@@ -1,0 +1,505 @@
+body {
+ width: 650px;
+ max-width: 50%;
+ /* max-height: 80%; */
+ background-color: rgba( 10,10,10,0.9 );
+ margin: 0;
+ padding: 5px 10px;
+}
+
+button {
+  outline:none;
+}
+
+.scroll::-webkit-scrollbar{
+ width: 8px;
+}
+.scroll::-webkit-scrollbar-thumb{
+ background-color: rgba(200, 200, 200, 0.5);
+ border-radius: 2px;
+ cursor:pointer;
+}
+.scroll::-webkit-scrollbar-thumb:hover{
+ background-color: rgba(200, 200, 0, 0.5);
+}
+
+#main_content {
+   width: 600px;
+}
+
+#free_gift_num_area {
+  min-height: 250px;
+}
+.free_gift_num_box {
+  display: inline-block;
+  width:calc(50% - 25px);;
+  padding: 5px;
+  margin: 10px 5px;
+  background-color: rgba( 30,50,50,0.8 );
+  border-radius: 10px;
+  text-align: center;
+}
+.gift_num_box {
+  width: 18%;
+  display: inline-block;
+}
+.gift_num_box img{
+  width: 40px;
+  height: 40px;
+}
+.free_gift_num {
+ width: 100%;
+ margin: 0;
+ font-size: 16px;
+ text-align: center;
+ color: #eee;
+}
+.re_get_time_1 {
+  margin: 10px 0 0 0;
+  font-size: 18px;
+  text-align: center;
+  color: #eee;
+}
+.re_get_time_2 {
+  margin: 5px 0 0 0;
+  font-size: 18px;
+  text-align: center;
+  color: #ee0;
+}
+
+#show_gold_area {
+  width: 100%;
+  margin: 5px 0;
+}
+#show_gold_area p{
+  width: 100%;
+  margin: 0;
+  font-size: 18px;
+  text-align: center;
+  color: #eee;
+}
+
+.get_log_button {
+  width: 100%;
+  margin: 5px 0 0 0;
+  padding: 3px 0;
+  border: 0px;
+  background: #122;
+  border-radius: 10px;
+  color: #eee;
+  font-size: 12px;
+  text-align: center;
+}
+.get_log_box {
+  display: none;
+  width: calc(96% - 5px);
+  height: 150px;
+  margin: 0 0 0 5px;
+  padding: 10px 1%;
+  border-radius: 10px;
+  overflow-x: hidden;
+}
+#star_get_log {
+  background: #ba0;
+  overflow: auto;
+  color: #111;
+}
+#seed_get_log {
+  background: #070;
+  overflow: auto;
+  color: #111;
+}
+.log_text_box {
+  width: 90%;
+  margin: 2px 2% 0 2%;
+  padding: 2px 2%;
+}
+.log_type {
+  display: inline-block;
+  width: 20%;
+  font-size: 18px;
+  margin: 0 5% 0 0;
+  text-align: center;
+  background-color: rgba( 10,10,10,0.6 );
+  border-radius: 5px;
+  color: #eee;
+}
+.log_text {
+  display: inline-block;
+  width: 60%;
+  font-size: 18px;
+  text-align: left;
+  margin: 0;
+}
+.log_border {
+  width: 100%;
+  border: 1px solid #eee;
+  margin: 5px 0;
+}
+
+#notification_log_button {
+  width: 60%;
+  margin: 5px 20%;
+  padding: 3px 0;
+  background: #233;
+  border: 0px;
+  border-radius: 10px;
+  color: #eee;
+  font-size: 16px;
+}
+#notification_log {
+  display: none;
+  width: calc(96% - 10px);
+  height: 100px;
+  margin: 0 0 0 10px;
+  padding: 10px 1%;
+  background-color: rgba( 30,50,50,0.8 );
+  border-radius: 10px;
+  overflow: auto;
+}
+#notification_log a {
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  margin: 0;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#notification_log a .notification_log_type{
+  display: inline-block;
+  margin: 5px 0;
+  width: 10%;
+  text-align: center;
+  border-radius: 5px;
+  color: #111;
+  vertical-align: top;
+}
+#notification_log a .notification_log_name{
+  display: inline-block;
+  width: 30%;
+  margin: 5px 0 5px 1%;
+  text-align: left;
+  color: #eee;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: top;
+}
+#notification_log a .notification_log_message{
+  display: inline-block;
+  width: 53%;
+  margin: 5px 0 5px 3%;
+  text-align: left;
+  color: #eee;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: top;
+}
+.type_onlive {
+  background-color: yellow;
+}
+.type_fr {
+  background-color: green;
+}
+.type_time_notice {
+  background-color: blue;
+}
+.type_reget {
+  background-color: red;
+}
+
+
+/* オンライブ */
+/* #onlive_area {
+  display: none;
+  margin: 5px 10px;
+  color: #eee;
+  font-size: 20px;
+}
+#onlive_area .gift_img_box img{
+  width: 40px;
+  height: 40px;
+  margin: 5px 15px;
+  padding: 10px calc(22% - 20px);
+  background-color: rgba( 30,50,50,0.8 );
+  border-radius: 30px;
+}
+#onlive_area .get_type{
+  width: 100%;
+  height: 40px;
+  margin: 5px 15px;
+  padding: 10px calc(22% - 20px);
+  background-color: rgba( 30,50,50,0.8 );
+  border-radius: 30px;
+} */
+/* -------------------
+ コンテキストメニュー
+----------------  */
+#context_box {
+  display: none;
+  position: fixed;
+  bottom:40px;
+  right:60px;
+  background-color: rgba( 20, 30, 30, 1.0 );
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}
+#context_box .context_in_box{
+  padding: 5px;
+  border-radius: 10px;
+}
+#context_box button {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  padding: 2px 0;
+  margin: 10px 0 4px 0;
+  background-color: rgba( 40, 40, 40, 0.8 );
+  color: #eee;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+}
+#context_box button:hover {
+  background-color: rgba( 200, 200, 10, 0.8 );
+  color: #111;
+}
+/* ライブを開く */
+.context_open_room{
+  width: 200px;
+  /* margin-:calc(50% - 60px); */
+}
+.context_open_room img{
+  width: 30px;
+  margin: 5px 20px 5px 20px;
+  padding: 3px;
+  border-radius: 30px;
+  text-align: center;
+  cursor:pointer;
+  /* margin-:calc(50% - 60px); */
+}
+.context_open_room .on{
+  background-color: rgba( 200, 200, 10, 0.8 );
+}
+.context_open_room p{
+  display: inline-block;
+  width:calc(60%);
+  color: #eee;
+  border-radius: 10px 0 0 10px;
+  background-color: rgba( 40, 60, 60, 0.8 );
+  padding: 2px 0;
+  text-align: center;
+  font-size: 16px;
+  margin: 5px 0;
+}
+.context_open_room .open_num,.context_open_room input{
+  width:calc(39%);
+  border-radius: 0 10px 10px 0;
+  border: 0;
+  outline: 0;
+  padding: 4px 0;
+  text-align: center;
+  font-size: 16px;
+  cursor:pointer;
+}
+.context_open_room .omit {
+  display: inline-block;
+  width: 45%;
+  margin: 10px 1.9% 0px 1.9%;
+  font-size: 14px;
+  color: #eee;
+  background-color: rgba( 40, 60, 60, 0.8 );
+  text-align: center;
+  border-radius: 10px;
+  cursor:pointer;
+}
+.context_open_room .omit.on {
+  background-color: rgba( 200, 200, 10, 0.8 );
+  color: #111;
+}
+.context_open_room .get_type{
+  width: 90%;
+  border-radius: 20px;
+  padding: 3px 5%;
+  margin: 5px 0 5px 0;
+  background-color: rgba( 40, 60, 60, 0.8 );
+}
+.context_open_room .get_type .radio{
+  width: 33%;
+  display: inline-block;
+  font-size: 15px;
+  color: #eee;
+  vertical-align: top;
+}
+.context_open_room .get_type input{
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  vertical-align: top;
+}
+#onlive_open {
+  position: fixed;
+  right: 15px;
+  bottom:10px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 40px;
+}
+#onlive_open:hover{
+  background-color: rgba( 200, 200, 10, 0.8 );
+}
+
+
+/*----------------
+   フォローリスト
+-----------------*/
+#follow_room_area {
+  display: none;
+}
+#follow_room_header {
+  position: relative;
+  width: 100%;
+}
+#follow_room_header ul{
+  padding: 0;
+  margin: 0;
+  background: #333;
+}
+#follow_room_header li{
+  width: 80px;
+  text-align: center;
+  padding: 5px 10px;
+  margin: 10px 0 10px 0;
+  color: #eee;
+  font-size: 18px;
+  list-style: none;
+  float:left;
+}
+#follow_room_header li:first-child{
+  border-radius:5px 0 0 5px;
+}
+#follow_room_header li:last-child{
+  border-radius:0 5px 5px 0;
+}
+.genre_active {
+  background: #881;
+}
+/* #follow_room_button_info{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+#follow_room_button_info p{
+  display: inline-block;
+  width: 40px;
+  padding: 2px 5px;
+  margin: 0 5px;
+  background: #335;
+  border-radius: 5px;
+  color: #eee;
+  font-size: 18px;
+  text-align: center;
+} */
+
+#follow_room_area {
+  margin: 0;
+  padding: 0;
+}
+
+.follow_room {
+  position: relative;
+  width: 600px;
+  height: 60px;
+  margin: 5px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: rgba( 30,30,30,0.8 );
+  border-radius: 10px;
+  padding: 5px;
+}
+.no_load_room {
+  height: 0px;
+  margin: 0;
+  padding: 0;
+}
+.follow_room a{
+  position: absolute;
+  top:5px;
+  left:0;
+}
+.follow_room_img{
+  height: 60px;
+}
+.follow_room_name{
+  position: absolute;
+  top:5px;
+  left:60px;
+  width: 45%;
+  font-size: 20px;
+  color: #eee;
+  margin: 0 0 0 60px;
+  overflow: hidden;
+}
+.follow_room_next_live{
+  position: absolute;
+  top:35px;
+  left:70px;
+  width: 45%;
+  font-size: 20px;
+  color: yellow;
+  margin: 0 0 0 60px;
+  overflow: hidden;
+}
+.follow_room button{
+  position: absolute;
+  width: 55px;
+  padding: 5px 10px;
+  color: #111;
+  font-size: 14px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.onlive_check{
+  top:20px;
+  left:calc(110px + 50%);
+}
+.fr_check{
+  top:20px;
+  left:calc(170px + 50%);
+}
+.time_notice_check{
+  top:20px;
+  left:calc(230px + 50%);
+}
+.check_off {
+  background: #ddd;
+}
+.check_on {
+  background: yellow;
+}
+.live_on {
+  background: #620;
+}
+
+/*----------------
+   サイドメニュー
+-----------------*/
+#side_menu {
+  position: absolute;
+  top : 20px;
+  right: 10px;
+  width: 50px;
+}
+#side_menu img{
+  width: 30px;
+  padding: 5px;
+  margin: 5px;
+}
+.menu_on {
+  background: #992;
+  border-radius: 30px;
+}
