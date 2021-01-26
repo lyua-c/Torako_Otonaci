@@ -1,5 +1,5 @@
 $(function () {
-  Debug = !1, GV = {}, FU = {}, GV.sru = "https://www.showroom-live.com", console.log("---Background---"), chrome.runtime.onMessage.addListener(function (re, sender, send) {
+  Debug = !1, GV = {}, FU = {}, GV.sru = "https://www.showroom-live.com", console.log("---SR Background---"), chrome.runtime.onMessage.addListener(function (re, sender, send) {
     switch (Debug && console.log(re), re.method) {
     case "getLength":
       send({
@@ -56,7 +56,7 @@ $(function () {
       GV.csrf_token = $(d).find("#js-signup-form input").attr("value"), localStorage.setItem("csrf_token", GV.csrf_token), $(d).find(".side-owner-menu-box").length ? localStorage.setItem("is_owner", !0) : localStorage.setItem("is_owner", !1), "follow" == type && (GV.follow_num = GV.fo.length - 1, FU.followOnOff(0)), "fc_remove" == type && FU.commentDelete(d_list.id)
     })
   }, FU.onliveRoom = function (li) {
-    Debug && console.log("---onliveRoom---"), $.get(GV.sru + "/api/live/onlives?skip_serial_code_live=1&_=" + Date.parse(new Date), function (d) {
+      console.log("---function onlive Room---"), $.get(GV.sru + "/api/live/onlives?skip_serial_code_live=1&_=" + Date.parse(new Date), function (d) {
       for (var i = 1, ro = [], onli = d.onlives, len = onli.length; i < len; i++)
         for (var ge = onli[i].lives, ii = 0; ii < ge.length; ii++) try {
           ro.push(ge[ii].room_url_key)
@@ -64,6 +64,12 @@ $(function () {
       for (i = 0; i < li.length; i++) - 1 == ro.indexOf(li[i]) && FU.roomInfo(li[i])
     })
   }, FU.tabOpen = function (a) {
+    chrome.tabs.getAllInWindow(undefined, function(tabs) {
+      if (tabs.length > 40) {
+        return;
+      }
+    });
+   
     if (GV.suko_log) {
       var ng = [];
       try {
@@ -114,8 +120,9 @@ $(function () {
         for (a.cl && 0 != a.gt || (time = 999), i = 0; i < 50; i++) rn_li.push(FU.randomNum(Object.keys(orl).length - 1, 0));
         rn_li = Array.from(new Set(rn_li)), i = 0;
         for (var ob = Object.keys(orl); i < open_n; i++) {
-          var id = ob[rn_li[i]],
-            url = GV.sru + "/" + orl[id].rk + "?gt=" + a.gt + "&time=" + time + "&ty=" + a.ty;
+          var id = ob[rn_li[i]];
+          if (!orl[id]) {return;}
+          var url = GV.sru + "/" + orl[id].rk + "?gt=" + a.gt + "&time=" + time + "&ty=" + a.ty;
           GV.open_room_log[String(orl[id].rk)] = GV.now_time_unix, chrome.tabs.create({
             url: url
           })
@@ -132,6 +139,11 @@ $(function () {
       var now_time = new Date;
       GV.now_time_unix = Math.floor(Math.round(now_time) / 1e3), GV.now_time_unix_c = Math.floor(Math.round(now_time)), GV.now_hm = ("0" + now_time.getHours()).slice(-2) + ("0" + now_time.getMinutes()).slice(-2), GV.op.all_noti && (GV.op.reget_time_noti && FU.reGetNoti(), FU.onliveNoti()), FU.followLiSortNoti()
     }, 1e3)
+
+    // フォローリストcheckのためのインターバル 海老名マルシェ
+    setInterval(function () {
+      FU.followRoomCheck();
+    }, 8 * 1000)
   }, FU.zeroFill = function (a, b) {
     return ("0000000000" + a).slice(-b)
   }, FU.randomNum = function (max, min) {
@@ -425,6 +437,69 @@ $(function () {
         }))
       }
     }
+  }, FU.followRoomCheck = function () {
+    // add 海老名マルシェ
+    chrome.tabs.getAllInWindow(null, function(tabs) {
+      if (tabs.length > 100) {
+        console.log("---なんかタブ多すぎるので閉じれるの閉じます---");
+        FU.closeTab();
+        return;
+      } else {
+        console.log('https://www.showroom-live.com/undefined 監視');
+        for (var i = 1; i < tabs.length; i++) {
+          console.log(tabs[i].url);
+          if (tabs[i].url == 'https://www.showroom-live.com/undefined') {
+            console.log('閉じるよ' + tabs[i].url);
+           chrome.tabs.remove(tabs[i].id, null);
+          }
+        } 
+      }
+    });
+    var e = GV.sru + "/follow";
+    console.log("---フォロールームの状況確認---")
+    $.ajax({
+      url: e,
+      type: "GET",
+      cache: false,
+      success: function (e) {
+        // console.log(e);
+        var t = $(e).find("#js-genre-section-all .listcardinfo-main-text"),
+          o = $(e).find("#js-genre-section-all .profile-link"),
+          i = $(e).find("#js-genre-section-all .room-url:even"),
+          n = $(e).find("#js-genre-section-all .icon-camera-gray");
+        for (var _ = 0; _ < o.length; _++) {
+          if (n[_].classList.contains('is-active')) {
+            var c = i[_].pathname.replace("/", "");
+              console.log(t[_]);
+              console.log(c);
+              var url = GV.sru + "/" + c;
+              FU.followopen(url);
+          }
+        }
+      },
+      error: function (e, t, o) {}
+    })
+  }, FU.closeTab = function() {
+    chrome.tabs.getAllInWindow(null, function (tabs) {
+      for (var i = 1; i < tabs.length; i++) {
+        chrome.tabs.remove(tabs[i].id, null);
+      }
+  });
+    }, FU.followopen = function (open_url) {
+    // add 海老名マルシェ
+    chrome.tabs.getAllInWindow(null, function(tabs) {
+      for (var i = 0, tab; tab = tabs[i]; i++) {
+        console.log(tab.url);
+        if (!tab.url.indexOf('devtools:')) {
+          console.log('devtools:は邪悪');
+          return;
+        }
+        if (tab.url && tab.url == open_url) {
+          return;
+        }
+      }
+      chrome.tabs.create({url: open_url});
+    });
   }, FU.commentDelete = function (id) {
     var p = "csrf_token=" + GV.csrf_token + "&room_id=" + GV.my_r_id + "&chat_id=" + id;
     $.post(GV.sru + "/fan_room/delete", p).done(function (d) {}).fail(function () {})

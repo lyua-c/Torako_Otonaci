@@ -62,6 +62,7 @@ $(function () {
             })
           }, 1e3)
         }, FU.reset_time = function () {
+          // 星種の解除時間
           try {
             var e = GV.star_log.re_1 < GV.star_log.re_2 ? GV.star_log.re_2 : GV.star_log.re_1;
             if (GV.now_unix_time + 5 > Math.floor(e / 1e3) && GV.now_unix_time < Math.floor(e / 1e3) && !GV.reset_se_star) {

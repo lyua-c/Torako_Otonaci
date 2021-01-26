@@ -63,14 +63,98 @@ $(function () {
             m: FU.zeroFill(Math.floor(et % 3600 / 60), 2),
             s: FU.zeroFill(et % 60, 2)
           };
-          if (GV.elap_time_t = et_t, GV.elapsed_time_noti && !GV.elt && FU.el_noti(et), GV.start_time ? $("#label-start-time").text(GV.start_time.h + ":" + GV.start_time.m + ":" + GV.start_time.s + "～" + (GV.elap_time ? "(" + et_t.h + ":" + et_t.m + ":" + et_t.s + ")" : "")) : GV.start_time = FU.timeChange(SRApp.store.get("startedAt")), 0 != SRApp.store.get("liveId")) t < 0 ? ($("#update_time").text("更新可能").css("background-color", "red"), GV.update_time_on = !0) : $("#update_time").css("background-color", "#000").text(GV.update_time.m + ":" + GV.update_time.s);
-          else if (GV.live_data = JSON.parse($("#js-live-data").attr("data-json")), GV.live_data.room.last_lived_at) {
+
+          if (GV.elap_time_t = et_t, GV.elapsed_time_noti && !GV.elt && FU.el_noti(et), GV.start_time ? $("#label-start-time").text(GV.start_time.h + ":" + GV.start_time.m + ":" + GV.start_time.s + "～" + (GV.elap_time ? "(" + et_t.h + ":" + et_t.m + ":" + et_t.s + ")" : "")) : GV.start_time = FU.timeChange(SRApp.store.get("startedAt")), 0 != SRApp.store.get("liveId")) {
+            // 1秒ごとにカウントをしている部分
+            if (GV.comm_n < 50 && !$("#auto_count .icon").hasClass("on")) {
+              FU.autoCountOn();
+              console.log(document.title + '自動カウントを開始します');  
+           }
+
+           if (((et_t.s == 0)) ||  (et_t.s == 30)) {
+               console.log('30秒に一回');
+            	 console.log ('view_bonus :' + $("#view_bonus").find(".icon").hasClass("on"));
+		           if (SRApp.store.get("isOfficial")) {
+		            console.log ('get_bonus_time :' + GV.suko.view_bonus_star);
+		            if (GV.suko.view_bonus_star) {
+		              if ($("#view_bonus").find(".icon").hasClass("on")) {
+		                    console.log('星集め');  
+		                    FU.freeGiftMax();
+		                    $("#onlive_open").trigger("click");
+		                    $("#context_box .open").trigger("click");
+		              }
+		            }
+		           } else {
+		            console.log ('get_bonus_time :' + GV.suko.view_bonus_seed);
+		            
+		            if (GV.suko.view_bonus_seed) {
+		              if ($("#view_bonus").find(".icon").hasClass("on")) {
+		                    console.log('種集め');  
+		                    FU.freeGiftMax();
+		                    $("#onlive_open").trigger("click");
+		                    $("#context_box .open").trigger("click");
+		              }
+		            }
+		          }  
+           }
+           
+
+
+            
+            if (document.location.pathname == '/ad4bc3574905' || document.location.pathname == '/yoani-J7aOMWjQWwjHC4') {
+              if ($("#ten_post img").hasClass("on")) {
+                console.log('ここ推しのルームで今１０投げれるやんけ！！');
+                
+                // 10個ギフト投げるよ！！
+                li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
+                for (var i = 0, len = li.length; i < len; i++) FU.freeGiftPost({
+                  id: li[i],
+                  n: 10
+                });
+              }
+                // かいしゅー
+                if ($("#view_bonus").hasClass("off")) {
+                  FU.viewBonusOn();
+                }
+           }
+
+           if (t < 0) {
+              $("#update_time").text("更新可能").css("background-color", "red");
+              GV.update_time_on = !0;
+            } else {
+              $("#update_time").css("background-color", "#000").text(GV.update_time.m + ":" + GV.update_time.s);
+            }
+          } else if (GV.live_data = JSON.parse($("#js-live-data").attr("data-json")), GV.live_data.room.last_lived_at) {
             var ti = FU.timeChange(GV.live_data.room.last_lived_at);
             $("#update_time").css("background-color", "#000").text("前回 " + ti.y + "/" + ti.mo + "/" + ti.d + " " + ti.h + ":" + ti.m + ":" + ti.s + "～" + (GV.end_time ? GV.end_time : ""))
+
+            // ライブが終わってたらタブを閉じる
+           if($("#update_time").text().match('前回')) {
+            console.log('配信終わってるやんけ！');
+            if (window.opener != null) {
+              window.close();
+            } else {
+              if (window.history.length > 1) {
+                window.history.back(-1);
+              }
+                console.log(window.opener + 'だから閉じれないよ！');
+                FU.getonlive();
+            }
+           }
           }
           GV.reset_time_noti && FU.reset_time(), setTimeout(function () {
             FU.nowTime()
           }, 1e3)
+        }, FU.getonlive = function (){
+          $.get("https://www.showroom-live.com/api/live/onlives?_=1", function (re) {
+            var i = Math.floor( Math.random() * re.onlives.length);
+            console.log(i);
+            var d = Math.floor( Math.random() * re.onlives[i].lives.length);
+            console.log(d);
+            var url = re.onlives[i].lives[d].room_url_key;
+            console.log(url);
+            document.location = "https://www.showroom-live.com/" + url;
+          })
         }, FU.reset_time = function () {
           try {
             var ret = GV.star_log.re_1 < GV.star_log.re_2 ? GV.star_log.re_2 : GV.star_log.re_1;
@@ -81,6 +165,8 @@ $(function () {
               } catch (e) {}
               setTimeout(function () {
                 GV.reset_se_star = !1
+                GV.suko.view_bonus_star = true;
+                FU.save("suko", GV.suko);
               }, 1e4)
             }
             ret = GV.seed_log.re_1 < GV.seed_log.re_2 ? GV.seed_log.re_2 : GV.seed_log.re_1;
@@ -91,6 +177,8 @@ $(function () {
               } catch (e) {}
               setTimeout(function () {
                 GV.reset_se_seed = !1
+                GV.suko.view_bonus_seed = true;
+                FU.save("suko", GV.suko);
               }, 1e4)
             }
           } catch (e) {}
@@ -319,6 +407,7 @@ $(function () {
               if (GV.fg_id_list.indexOf(gl[i].gift_id) >= 0 && gl[i].free_num > h_n && gl[i].free_num < 10) h_n = gl[i].free_num;
               $("#gift_area .free_gift .g_num_" + gl[i].gift_id).text("× " + gl[i].free_num), GV.gift_have_n && (GV.gift_have_n[String(gl[i].gift_id)] = gl[i].free_num), GV.free_gift_data[gl[i].gift_id] = gl[i].free_num
             }
+
             try {
               $("#gift_area .user_name").text(GV.user_data.name).attr("title", "ユーザーレベル: Lv." + GV.user_data.fan_level + "\n累計ポイント: " + GV.user_data.contribution_point.toLocaleString() + " pt\n次のレベルまで: " + GV.user_data.next_level_point.toLocaleString() + " pt"), $("#gift_area .show_gold").text("Show Gold: " + GV.user_data.gold.toLocaleString() + " G")
             } catch (e) {}
@@ -333,6 +422,7 @@ $(function () {
             GV.gift_list = d.normal
           })
         }, FU.freeGiftPost = function (p) {
+          console.log(p);
           if (p.n < 10) {
             if (GV.now_post_li[p.id]) return void console.log("return");
             GV.now_post_li[p.id] = !0
@@ -443,7 +533,7 @@ $(function () {
           }).done(function (d) {
             FU.pop_c("follow", FU.local_url("/img/heart.png"), "フォローしました。")
           })
-        }, FU.dom_C = function () {
+          }, FU.dom_C = function () {
           if (GV.debug && console.log("---dom---"), FU.hash(), $("#js-room-head-other-select-list").append('<li id="suko_config_show"><a>すこツー設定</a></li>'), $("<div>", {
               id: "suko_area"
             }).appendTo("body"), $("#suko_area").append($(GV.dom_area.join(""))), $("#config_area").append($(GV.dom_config.join(""))), $("#icon_area").append($(GV.dom_icon.join(""))), $("#gift_area").append($(GV.dom_gift_box.join(""))), $("#get_log_area").append($(GV.dom_get_log.join(""))), $("#label-start-time").after($(GV.dom_time.join(""))), $("#js-room-section").append($(GV.dom_video.join(""))), $("#get_icon_area").append($(GV.dom_get_icon.join(""))), $("<div>", {
@@ -666,7 +756,16 @@ $(function () {
                   if (SRApp.store.get("isOfficial")) var l = GV.star_log,
                     ty = "star";
                   else l = GV.seed_log, ty = "seed";
-                  if (l.re_1 > GV.now_unix_time_c) msg = "無料ギフトの獲得は" + GV[ty + "_re_get_time"] + "まで制限されています"
+                  if (l.re_1 > GV.now_unix_time_c) {
+                    msg = "無料ギフトの獲得は" + GV[ty + "_re_get_time"] + "まで制限されています";
+                    if (SRApp.store.get("isOfficial")) {
+                      GV.suko.view_bonus_star = false;
+                    } else {
+                      GV.suko.view_bonus_seed = false;
+                    }
+                    FU.save("suko", GV.suko);
+                    if ($("#live_view_mode")) {window.close();}
+                  }
                 } catch (e) {}
                 try {
                   if (SRApp.store.get("isOfficial")) l = GV.star_vb_log;
@@ -717,8 +816,20 @@ $(function () {
             if (GV.suko.live_config.auto_block) {
               await FU.currentUser();
               for (var d = GV.user_data.gift_list.normal, c = !0, i = 0; i < 5; i++)
-                if (99 != d[i].free_num) c = !1;
-              c && (FU.viewBonusOff(), GV.pop_n = GV.pop_n ? GV.pop_n + 1 : 0, FU.pop_c(GV.pop_n, FU.local_url("/img/view_bonus_2.png"), "自動視聴ボ ブロック"))
+                if (99 != d[i].free_num) {
+                  c = !1;
+                  console.log(d[i].gift_id + ' : ' + d[i].free_num);
+                }
+              
+              if (c) {
+                console.log('マックスじゃないギフトはありません');
+                (FU.viewBonusOff(), GV.pop_n = GV.pop_n ? GV.pop_n + 1 : 0, FU.pop_c(GV.pop_n, FU.local_url("/img/view_bonus_2.png"), "自動視聴ボ ブロック"));
+              } else {
+                console.log('マックスじゃないギフトありました');
+                if (!$("#view_bonus").find(".icon").hasClass("on")) {FU.viewBonusOn();}
+                GV.pop_n = GV.pop_n ? GV.pop_n + 1 : 0;
+                FU.pop_c(GV.pop_n, FU.local_url("/img/view_bonus_2.png"), "自動視聴ボ ブロック 解除");
+              }
             }
           }, 1 == GV.url_para.gt || 2 == GV.url_para.gt ? FU.bonusGetMode() : (FU.view_bonus_switch(), setTimeout(function () {
             0 != SRApp.store.get("liveId") && FU.freeGiftMax()
@@ -757,6 +868,7 @@ $(function () {
               }
               4 == v.gift_id && (GV.is_daruma = !0)
             }), GV.is_daruma && pg.push('<div class="pay_gift r_daruma"><img class="gift_img" src="' + FU.local_url("/img/rainbow_daruma.png") + '" name="999" value="130" title="130 G (5種×10個)"></div>'), $("#gift_area .free_gift_box .free_gift").length || $("#gift_area .free_gift_box").append($(fg.join(""))), $("#gift_area .pay_gift_box .pay_gift").length || ($("#gift_area .pay_gift_box").append($(pg.join(""))), $("#gift_area .pay_gift_box").append($(rg.join("")))), FU.userData(), $("#gift_area .free_gift_box img").off(), $("#gift_area .free_gift_box img").on("click", function () {
+              console.log($(this).attr("name"));
               FU.freeGiftPost({
                 id: $(this).attr("name"),
                 n: 10
@@ -1723,6 +1835,7 @@ $(function () {
               FU.liveDataChange()
             }, 1e3)
           }
+          
           var t;
           FU.liveEnd = function () {
             GV.auto_gp = !1;
@@ -1738,6 +1851,13 @@ $(function () {
             GV.start_time = !1, GV.tweet_B = !1, GV.vbt_n = 30, GV.comm_n = GV.count_s_n ? 1 : 0, $("#auto_count").removeClass("end").find("p").text(GV.comm_n), $("#video_con_box").hide(), $("#ava_enter_box").remove(), $("#get_icon_area .view").removeClass("get"), $("#get_icon_area .tweet").removeClass("get"), $("#one_click_tweet img").removeClass("on"), setTimeout(function () {
               GV.url_para.time && 999 != GV.url_para.time && (GV.live_view_mode || window.close())
             }, 3e3)
+            if (window.opener != null) {
+              window.close();
+            } else {
+              if (window.history.length > 1) {
+                window.history.back(-1);
+              }
+            }
           }, FU.liveStart = function () {
             if (SRApp.store.get("liveId")) {
               FU.roomDataReset(), FU.start_time();
@@ -1811,7 +1931,7 @@ $(function () {
               k.match("count_log_") && GV.now_unix_time - JSON.parse(v).t > 86400 && localStorage.removeItem(k)
             }), 0 != SRApp.store.get("liveId") && SRApp.vent.trigger("fetchAvatar")
           }, 2e3)) : setTimeout(function () {
-            console.log("---retry---"), FU.check()
+            GV.debug && console.log("---retry---"), FU.check()
           }, 500))
         }, $(window).load(function () {
           GV.check = !0, FU.check()

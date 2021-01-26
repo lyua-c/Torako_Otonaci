@@ -311,7 +311,7 @@ $(function () {
   }), 1 == localStorage.getItem("omit_vb") && $("#context_box .vb").addClass("on"), 1 == localStorage.getItem("omit_tb") && $("#context_box .tb").addClass("on"), 1 == localStorage.getItem("omit_cl") && $("#context_box .close").addClass("on"), localStorage.getItem("room_open_n") && $("#context_box .open_num").val(localStorage.getItem("room_open_n")), optionOpen = function () {
     chrome.tabs.create({
       url: "./option.html"
-    }).focus()
+    })
   }, $("#option_open").click(function () {
     optionOpen()
   }), $("#side_menu img").click(function () {
