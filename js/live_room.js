@@ -79,8 +79,12 @@ $(function () {
 		            if (GV.suko.view_bonus_star) {
 		              if ($("#view_bonus").find(".icon").hasClass("on")) {
 		                    console.log('星集め');  
-		                    FU.freeGiftMax();
-		                    $("#onlive_open").trigger("click");
+                        FU.freeGiftMax();
+                        if (!$("#onlive_open img").hasClass("on")) {
+                          $("#onlive_open").trigger("click");
+                          $("#onlive_open").trigger("click");
+                          $("#onlive_open").trigger("click");
+                        }		                    
 		                    $("#context_box .open").trigger("click");
 		              }
 		            }
@@ -91,8 +95,13 @@ $(function () {
 		              if ($("#view_bonus").find(".icon").hasClass("on")) {
 		                    console.log('種集め');  
 		                    FU.freeGiftMax();
-		                    $("#onlive_open").trigger("click");
+                        if (!$("#onlive_open img").hasClass("on")) {
+                          $("#onlive_open").trigger("click");
+                          $("#onlive_open").trigger("click");
+                          $("#onlive_open").trigger("click");
+                        }		                    
 		                    $("#context_box .open").trigger("click");
+
 		              }
 		            }
 		          }  
