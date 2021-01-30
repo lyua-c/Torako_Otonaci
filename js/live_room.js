@@ -69,6 +69,15 @@ $(function () {
             if (GV.comm_n < 50 && !$("#auto_count .icon").hasClass("on")) {
               FU.autoCountOn();
               console.log(document.title + '自動カウントを開始します');  
+              if ($(".js-follow").hasClass("active")) {
+                // 1個ギフト投げるよ！！
+                console.log(document.title + '自動1投げ');  
+                var li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
+                for (var i = 0, len = li.length; i < len; i++) FU.freeGiftPost({
+                  id: li[i],
+                  n: 1
+                });                
+              }  
            }
 
            if (((et_t.s == 0)) ||  (et_t.s == 30)) {
@@ -106,16 +115,32 @@ $(function () {
 		            }
 		          }  
            }
+
+
+            if(GV.suko.live_config["count_end_comm_room_list_" + SRApp.store.get("roomId")] && !$(".js-follow").hasClass("active")) {
+              console.log('10秒後に閉じます');
+                setTimeout(function () {
+                if (window.opener != null) {
+                 window.close();
+                } else {
+                 if (window.history.length > 1) {
+                   window.history.back(-1);
+                 }
+                   console.log(window.opener + 'だから閉じれないよ！');
+                   FU.getonlive();
+                }
+              },10 * 1000)
+            }
            
 
 
             
-            if (document.location.pathname == '/ad4bc3574905' || document.location.pathname == '/yoani-J7aOMWjQWwjHC4') {
+            if (document.location.pathname == '/ad4bc3574905' || document.location.pathname == '/YuNiKanoKorabo_0111') {
               if ($("#ten_post img").hasClass("on")) {
                 console.log('ここ推しのルームで今１０投げれるやんけ！！');
                 
                 // 10個ギフト投げるよ！！
-                li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
+                var li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
                 for (var i = 0, len = li.length; i < len; i++) FU.freeGiftPost({
                   id: li[i],
                   n: 10
@@ -773,7 +798,11 @@ $(function () {
                       GV.suko.view_bonus_seed = false;
                     }
                     FU.save("suko", GV.suko);
-                    if ($("#live_view_mode")) {window.close();}
+                    if (GV.live_view_mode) {
+                      console.log('live_view_mode');
+                      window.close();
+                      
+                    }
                   }
                 } catch (e) {}
                 try {
@@ -1861,6 +1890,7 @@ $(function () {
               GV.url_para.time && 999 != GV.url_para.time && (GV.live_view_mode || window.close())
             }, 3e3)
             if (window.opener != null) {
+              console.log('window.opener');
               window.close();
             } else {
               if (window.history.length > 1) {
