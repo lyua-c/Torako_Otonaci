@@ -80,7 +80,7 @@ $(function () {
               }  
            }
 
-           if (((et_t.s == 0)) ||  (et_t.s == 30)) {
+            if (((et_t.s == 0)) ||  (et_t.s == 30)) {
                console.log('30秒に一回');
             	 console.log ('view_bonus :' + $("#view_bonus").find(".icon").hasClass("on"));
 		           if (SRApp.store.get("isOfficial")) {
@@ -114,7 +114,23 @@ $(function () {
 		              }
 		            }
 		          }  
-           }
+            }
+
+            // カウント終わっていてフォローしてないルームは閉じちゃえ
+            if (GV.comm_n >= 50 && !$(".js-follow").hasClass("active")) {
+             console.log('10秒後に閉じます');
+             setTimeout(function () {
+               if (window.opener != null) {
+               window.close();
+               } else {
+               if (window.history.length > 1) {
+                 window.history.back(-1);
+               }
+                 console.log(window.opener + 'だから閉じれないよ！');
+                 FU.getonlive();
+               }
+             },10 * 1000)
+            }             
 
 
             if(GV.suko.live_config["count_end_comm_room_list_" + SRApp.store.get("roomId")] && !$(".js-follow").hasClass("active")) {
