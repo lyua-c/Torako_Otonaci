@@ -67,10 +67,10 @@ $(function () {
           if (GV.elap_time_t = et_t, GV.elapsed_time_noti && !GV.elt && FU.el_noti(et), GV.start_time ? $("#label-start-time").text(GV.start_time.h + ":" + GV.start_time.m + ":" + GV.start_time.s + "～" + (GV.elap_time ? "(" + et_t.h + ":" + et_t.m + ":" + et_t.s + ")" : "")) : GV.start_time = FU.timeChange(SRApp.store.get("startedAt")), 0 != SRApp.store.get("liveId")) {
             // 1秒ごとにカウントをしている部分
             if (GV.comm_n < 50 && !$("#auto_count .icon").hasClass("on")) {
-              FU.autoCountOn();
-              console.log(document.title + '自動カウントを開始します');  
               if ($(".js-follow").hasClass("active")) {
                 // 1個ギフト投げるよ！！
+          	    FU.autoCountOn();
+          	    console.log(document.title + '自動カウントを開始します');  
                 console.log(document.title + '自動1投げ');  
                 var li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
                 for (var i = 0, len = li.length; i < len; i++) FU.freeGiftPost({
@@ -151,7 +151,7 @@ $(function () {
 
 
             
-            if (document.location.pathname == '/ad4bc3574905' || document.location.pathname == '/YuNiKanoKorabo_0111') {
+            if (document.location.pathname == '/ad4bc3574905' || document.location.pathname == '/YuNiKanoKorabo_0111' || document.location.pathname == '/Serimaru') {
               if ($("#ten_post img").hasClass("on")) {
                 console.log('ここ推しのルームで今１０投げれるやんけ！！');
                 
