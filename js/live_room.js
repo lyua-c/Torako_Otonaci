@@ -80,7 +80,7 @@ $(function () {
               }  
            }
 
-            if (((et_t.s == 0)) ||  (et_t.s == 30)) {
+            if ((((et_t.s == 0)) ||  (et_t.s == 30)) && !$(".js-follow").hasClass("active")) {
                console.log('30秒に一回');
             	 console.log ('view_bonus :' + $("#view_bonus").find(".icon").hasClass("on"));
 		           if (SRApp.store.get("isOfficial")) {
