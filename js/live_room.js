@@ -130,8 +130,24 @@ $(function () {
                  FU.getonlive();
                }
              },10 * 1000)
-            }             
+            }    
 
+            // フォローしてないルームで無料ギフトいっぱいならとじちゃえ
+            if (FU.GiftMax && !$(".js-follow").hasClass("active")) {
+              console.log('10秒後に閉じます');
+              setTimeout(function () {
+                if (window.opener != null) {
+                window.close();
+                } else {
+                if (window.history.length > 1) {
+                  window.history.back(-1);
+                }
+                  console.log(window.opener + 'だから閉じれないよ！');
+                  FU.getonlive();
+                }
+              },10 * 1000)
+             }             
+ 
 
             if(GV.suko.live_config["count_end_comm_room_list_" + SRApp.store.get("roomId")] && !$(".js-follow").hasClass("active")) {
               console.log('10秒後に閉じます');
@@ -878,6 +894,7 @@ $(function () {
               if (c) {
                 console.log('マックスじゃないギフトはありません');
                 (FU.viewBonusOff(), GV.pop_n = GV.pop_n ? GV.pop_n + 1 : 0, FU.pop_c(GV.pop_n, FU.local_url("/img/view_bonus_2.png"), "自動視聴ボ ブロック"));
+                FU.GiftMax = 1;
               } else {
                 console.log('マックスじゃないギフトありました');
                 if (!$("#view_bonus").find(".icon").hasClass("on")) {FU.viewBonusOn();}
