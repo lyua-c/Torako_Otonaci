@@ -83,6 +83,8 @@ $(function () {
             if ((((et_t.s == 0)) ||  (et_t.s == 30)) && $(".js-follow").hasClass("active")) {
                console.log('30秒に一回');
             	 console.log ('view_bonus :' + $("#view_bonus").find(".icon").hasClass("on"));
+
+               
 		           if (SRApp.store.get("isOfficial")) {
 		            console.log ('get_bonus_time :' + GV.suko.view_bonus_star);
 		            if (GV.suko.view_bonus_star) {
@@ -99,8 +101,8 @@ $(function () {
 		            }
 		           } else {
 		            console.log ('get_bonus_time :' + GV.suko.view_bonus_seed);
-		            
-		            if (GV.suko.view_bonus_seed) {
+                chrome.tabs.getAllInWindow(null, function(tabs) {
+		            if (GV.suko.view_bonus_seed && tabs.length < 30) {
 		              if ($("#view_bonus").find(".icon").hasClass("on")) {
 		                    console.log('種集め');  
 		                    FU.freeGiftMax();
@@ -113,6 +115,7 @@ $(function () {
 
 		              }
 		            }
+              });
 		          }  
             }
 
@@ -127,14 +130,14 @@ $(function () {
                  window.history.back(-1);
                }
                  console.log(window.opener + 'だから閉じれないよ！');
-                 FU.getonlive();
+                 location.href = "https://www.showroom-live.com/undefined";
                }
              },10 * 1000)
             }    
 
             // フォローしてないルームで無料ギフトいっぱいならとじちゃえ
             if (FU.GiftMax && !$(".js-follow").hasClass("active")) {
-              console.log('10秒後に閉じます');
+              console.log('3秒後に閉じます フォローしてないルームで無料ギフトいっぱい');
               setTimeout(function () {
                 if (window.opener != null) {
                 window.close();
@@ -143,14 +146,14 @@ $(function () {
                   window.history.back(-1);
                 }
                   console.log(window.opener + 'だから閉じれないよ！');
-                  FU.getonlive();
+                  location.href = "https://www.showroom-live.com/undefined";
                 }
-              },10 * 1000)
+              },3 * 1000)
              }             
  
 
             if(GV.suko.live_config["count_end_comm_room_list_" + SRApp.store.get("roomId")] && !$(".js-follow").hasClass("active")) {
-              console.log('10秒後に閉じます');
+              console.log('3秒後に閉じます');
                 setTimeout(function () {
                 if (window.opener != null) {
                  window.close();
@@ -159,15 +162,25 @@ $(function () {
                    window.history.back(-1);
                  }
                    console.log(window.opener + 'だから閉じれないよ！');
-                   FU.getonlive();
+                   location.href = "https://www.showroom-live.com/undefined";location.href = "https://www.showroom-live.com/undefined";
                 }
-              },10 * 1000)
+              },3 * 1000)
+            }
+
+            if ($("#get_icon_area .view").hasClass("get") && !$(".js-follow").hasClass("active")) {
+              location.href = "https://www.showroom-live.com/undefined";
             }
            
 
 
             
-            if (document.location.pathname == '/ad4bc3574905' || document.location.pathname == '/YuNiKanoKorabo_0111' || document.location.pathname == '/Serimaru') {
+            if (document.location.pathname == '/ad4bc3574905' // 深紅(種)
+            || document.location.pathname == '/sonia-tosaka' // 遠坂ソニア
+            || document.location.pathname == '/7b9a03257341' // 心乃花room
+            || document.location.pathname == '/yuzuhamakura' // まくらちゃん
+            || document.location.pathname == '/YuNiKanoKorabo_0111'// ぽんちゃん
+            || document.location.pathname == '/Serimaru' // セリ丸
+            ) {
               if ($("#ten_post img").hasClass("on")) {
                 console.log('ここ推しのルームで今１０投げれるやんけ！！');
                 
@@ -204,7 +217,7 @@ $(function () {
                 window.history.back(-1);
               }
                 console.log(window.opener + 'だから閉じれないよ！');
-                FU.getonlive();
+                location.href = "https://www.showroom-live.com/undefined";
             }
            }
           }

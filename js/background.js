@@ -26,6 +26,15 @@ $(function () {
       }
       "follow_list" == re.key && (FU.configLoad(), FU.csrfToken("follow"), Follow_list = JSON.parse(re.value)), "user_id" == re.key && FU.userData(re.value), "suko_data" == re.key && (GV.suko_data = JSON.parse(re.value) ? JSON.parse(re.value) : {}), "suko_get_log" == re.key && (GV.suko_log = JSON.parse(re.value) ? JSON.parse(re.value) : {});
       break;
+    case "tab_close":
+        chrome.tabs.getAllInWindow(null, function (tabs) {
+          for (var i = 1; i < tabs.length; i++) {
+            if (tabs[i].url.String == re.value.String){
+              chrome.tabs.remove(tabs[i].id, null);
+            }
+          }
+        })
+        break;
     case "function":
       if ("fr_comm_remove" == re.key) {
         var d = JSON.parse(re.value);
@@ -144,6 +153,10 @@ $(function () {
     setInterval(function () {
       FU.followRoomCheck();
     }, 8 * 1000)
+    // フォローリストcheckのためのインターバル 海老名マルシェ
+    setInterval(function () {
+      FU.Room404Check();
+    }, 1 * 1000)
   }, FU.zeroFill = function (a, b) {
     return ("0000000000" + a).slice(-b)
   }, FU.randomNum = function (max, min) {
@@ -437,8 +450,7 @@ $(function () {
         }))
       }
     }
-  }, FU.followRoomCheck = function () {
-    // add 海老名マルシェ
+  }, FU.Room404Check = function () {
     chrome.tabs.getAllInWindow(null, function(tabs) {
       if (tabs.length > 100) {
         console.log("---なんかタブ多すぎるので閉じれるの閉じます---");
@@ -454,7 +466,9 @@ $(function () {
           }
         } 
       }
-    });
+    });  
+  }, FU.followRoomCheck = function () {
+    // add 海老名マルシェ
     var e = GV.sru + "/follow";
     console.log("---フォロールームの状況確認---")
     $.ajax({
