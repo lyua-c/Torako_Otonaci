@@ -83,11 +83,10 @@ $(function () {
             if ((((et_t.s == 0)) ||  (et_t.s == 30)) && $(".js-follow").hasClass("active")) {
                console.log('30秒に一回');
             	 console.log ('view_bonus :' + $("#view_bonus").find(".icon").hasClass("on"));
-
                
 		           if (SRApp.store.get("isOfficial")) {
 		            console.log ('get_bonus_time :' + GV.suko.view_bonus_star);
-		            if (GV.suko.view_bonus_star) {
+		            if (GV.suko.view_bonus_stard && !GV.url_para.gt) {
 		              if ($("#view_bonus").find(".icon").hasClass("on")) {
 		                    console.log('星集め');  
                         FU.freeGiftMax();
@@ -101,8 +100,7 @@ $(function () {
 		            }
 		           } else {
 		            console.log ('get_bonus_time :' + GV.suko.view_bonus_seed);
-                chrome.tabs.getAllInWindow(null, function(tabs) {
-		            if (GV.suko.view_bonus_seed && tabs.length < 30) {
+		            if (GV.suko.view_bonus_seed && !GV.url_para.gt) {
 		              if ($("#view_bonus").find(".icon").hasClass("on")) {
 		                    console.log('種集め');  
 		                    FU.freeGiftMax();
@@ -115,7 +113,6 @@ $(function () {
 
 		              }
 		            }
-              });
 		          }  
             }
 
