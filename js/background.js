@@ -502,6 +502,8 @@ $(function () {
     }, FU.followopen = function (open_url) {
     // add 海老名マルシェ
     chrome.tabs.getAllInWindow(null, function(tabs) {
+      if (tabs.length == 0) {return;}
+      
       for (var i = 0, tab; tab = tabs[i]; i++) {
         console.log(tab.url);
         if (!tab.url.indexOf('devtools:')) {

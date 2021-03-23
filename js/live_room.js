@@ -176,6 +176,8 @@ $(function () {
             || document.location.pathname == '/7b9a03257341' // 心乃花room
             || document.location.pathname == '/yuzuhamakura' // まくらちゃん
             || document.location.pathname == '/YuNiKanoKorabo_0111'// ぽんちゃん
+            || document.location.pathname == '/revorn_02_0002'// サクラ・シャスリー
+            || document.location.pathname == '/k_sunoki_2020'// 紅乃茶すのき
             || document.location.pathname == '/Serimaru' // セリ丸
             ) {
               if ($("#ten_post img").hasClass("on")) {
