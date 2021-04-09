@@ -83,37 +83,6 @@ $(function () {
             if ((((et_t.s == 0)) ||  (et_t.s == 30)) && $(".js-follow").hasClass("active")) {
                console.log('30秒に一回');
             	 console.log ('view_bonus :' + $("#view_bonus").find(".icon").hasClass("on"));
-               
-		           if (SRApp.store.get("isOfficial")) {
-		            console.log ('get_bonus_time :' + GV.suko.view_bonus_star);
-		            if (GV.suko.view_bonus_stard && !GV.url_para.gt) {
-		              if ($("#view_bonus").find(".icon").hasClass("on")) {
-		                    console.log('星集め');  
-                        FU.freeGiftMax();
-                        if (!$("#onlive_open img").hasClass("on")) {
-                          $("#onlive_open").trigger("click");
-                          $("#onlive_open").trigger("click");
-                          $("#onlive_open").trigger("click");
-                        }		                    
-		                    $("#context_box .open").trigger("click");
-		              }
-		            }
-		           } else {
-		            console.log ('get_bonus_time :' + GV.suko.view_bonus_seed);
-		            if (GV.suko.view_bonus_seed && !GV.url_para.gt) {
-		              if ($("#view_bonus").find(".icon").hasClass("on")) {
-		                    console.log('種集め');  
-		                    FU.freeGiftMax();
-                        if (!$("#onlive_open img").hasClass("on")) {
-                          $("#onlive_open").trigger("click");
-                          $("#onlive_open").trigger("click");
-                          $("#onlive_open").trigger("click");
-                        }		                    
-		                    $("#context_box .open").trigger("click");
-
-		              }
-		            }
-		          }  
             }
 
             // カウント終わっていてフォローしてないルームは閉じちゃえ
@@ -167,21 +136,27 @@ $(function () {
             if ($("#get_icon_area .view").hasClass("get") && !$(".js-follow").hasClass("active")) {
               location.href = "https://www.showroom-live.com/undefined";
             }
-           
-
-
             
             if (document.location.pathname == '/ad4bc3574905' // 深紅(種)
-            || document.location.pathname == '/sonia-tosaka' // 遠坂ソニア
+            || document.location.pathname == '/sonia-tosaka' // 遠坂ソニア　星
             || document.location.pathname == '/7b9a03257341' // 心乃花room
-            || document.location.pathname == '/yuzuhamakura' // まくらちゃん
-            || document.location.pathname == '/YuNiKanoKorabo_0111'// ぽんちゃん
-            || document.location.pathname == '/revorn_02_0002'// サクラ・シャスリー
-            || document.location.pathname == '/k_sunoki_2020'// 紅乃茶すのき
-            || document.location.pathname == '/Serimaru' // セリ丸
+            || document.location.pathname == '/yuzuhamakura' // まくらちゃん　星
+            || document.location.pathname == '/ea6b75258274'// こんこんちあ★るーむ 
+            || document.location.pathname == '/YuNiKanoKorabo_0111'// ぽんちゃん　星
+            || document.location.pathname == '/revorn_02_0002'// サクラシャスリー 星
+            || document.location.pathname == '/k_sunoki_2020'// 紅乃茶すのき　星
+            || document.location.pathname == '/15f674301310'// 肉詰テル
+            || document.location.pathname == '/Korpokkur01'// 杠 小雪　星
+            || document.location.pathname == '/s_mashiro0'// 白雪ましろ　星
+            || document.location.pathname == '/ShibukiMayu'// 紫吹真雪
+            || document.location.pathname == '/4f0d63643859'// しももふわわ
+            || document.location.pathname == '/e4b473019730'// なぞのそらみ　星
+            || document.location.pathname == '/209214199160'// さくらば幼女　種
+            || document.location.pathname == '/Serimaru' // セリ丸　星
             ) {
               if ($("#ten_post img").hasClass("on")) {
                 console.log('ここ推しのルームで今１０投げれるやんけ！！');
+                FU.freeGiftMax();
                 
                 // 10個ギフト投げるよ！！
                 var li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
@@ -243,8 +218,6 @@ $(function () {
               } catch (e) {}
               setTimeout(function () {
                 GV.reset_se_star = !1
-                GV.suko.view_bonus_star = true;
-                FU.save("suko", GV.suko);
               }, 1e4)
             }
             ret = GV.seed_log.re_1 < GV.seed_log.re_2 ? GV.seed_log.re_2 : GV.seed_log.re_1;
@@ -255,8 +228,6 @@ $(function () {
               } catch (e) {}
               setTimeout(function () {
                 GV.reset_se_seed = !1
-                GV.suko.view_bonus_seed = true;
-                FU.save("suko", GV.suko);
               }, 1e4)
             }
           } catch (e) {}
@@ -879,6 +850,7 @@ $(function () {
           }), FU.view_bonus_switch = function () {
             GV.suko.live_config.view_bonus_sepa ? SRApp.store.get("isOfficial") ? GV.suko.live_config.view_bonus_star ? FU.viewBonusOn() : FU.viewBonusOff() : GV.suko.live_config.view_bonus_seed ? FU.viewBonusOn() : FU.viewBonusOff() : GV.suko.live_config.view_bonus ? FU.viewBonusOn() : FU.viewBonusOff(), FU.versionUpCheck()
           }, FU.bonusGetMode = function () {
+            FU.freeGiftMax();
             FU.viewBonusOn(), FU.video_stop(), SRApp.vent.trigger("hideCanvas"), FU.mute(!0), $("body").append('<div id="live_view_mode">通常視聴モードに変更</div>"'), $("#live_view_mode").on("click", function () {
               $("#live_view_mode").hide(), GV.live_view_mode = !0, SRApp.vent.trigger("showCanvas"), FU.video_play();
               var s1 = void 0 == GV.suko.live_config["start_mute_room_" + SRApp.store.get("roomId")] ? 0 : GV.suko.live_config["start_mute_room_" + SRApp.store.get("roomId")];
@@ -905,10 +877,23 @@ $(function () {
               
               if (c) {
                 console.log('マックスじゃないギフトはありません');
+                if (SRApp.store.get("isOfficial")) {
+                  GV.suko.max_star = true;
+                } else {
+                  GV.suko.max_seed = true;
+                }
+                FU.save("suko", GV.suko);
+                
                 (FU.viewBonusOff(), GV.pop_n = GV.pop_n ? GV.pop_n + 1 : 0, FU.pop_c(GV.pop_n, FU.local_url("/img/view_bonus_2.png"), "自動視聴ボ ブロック"));
                 FU.GiftMax = 1;
               } else {
                 console.log('マックスじゃないギフトありました');
+                if (SRApp.store.get("isOfficial")) {
+                  GV.suko.max_star = false;
+                } else {
+                  GV.suko.max_seed = false;
+                }
+                FU.save("suko", GV.suko);
                 if (!$("#view_bonus").find(".icon").hasClass("on")) {FU.viewBonusOn();}
                 GV.pop_n = GV.pop_n ? GV.pop_n + 1 : 0;
                 FU.pop_c(GV.pop_n, FU.local_url("/img/view_bonus_2.png"), "自動視聴ボ ブロック 解除");
@@ -1129,6 +1114,18 @@ $(function () {
                 var dt2 = FU.timeChange(GV.re_2);
                 $("#get_log_area ." + type + " .reset_2").text(dt2.h + ":" + dt2.m + ":" + dt2.s).css("color", GV.re_2 < GV.now_unix_time_c && 0 != GV.re_2 ? "red" : "#111").attr("title", GV.re_2)
               }
+
+              // 星回収リセットかかっていたら
+              if (GV.re_1 < GV.now_unix_time_c) {
+                GV.suko.view_bonus_star = true;
+                FU.save("suko", GV.suko);
+              } 
+
+              if (GV.re_2 < GV.now_unix_time_c) {
+                GV.suko.view_bonus_seed = true;
+                FU.save("suko", GV.suko);
+              }
+
               ta.find(".total").text(GV.vi_n), GV[type + "_log"] = {
                 vi: GV.vi_n,
                 re_1: GV.re_1,

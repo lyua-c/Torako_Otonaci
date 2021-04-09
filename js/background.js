@@ -153,6 +153,24 @@ $(function () {
     setInterval(function () {
       FU.followRoomCheck();
     }, 8 * 1000)
+
+    // 無料ギフトのためのインターバル 海老名マルシェ
+    setInterval(function () {
+      FU.configLoad();
+      if (GV.suko_data.view_bonus_star && !GV.suko_data.max_star) {
+        console.log("--- open_tab ---");
+        console.log("view_bonus_star:" + GV.suko_data.view_bonus_star);
+        console.log("max_star:" + GV.suko_data.max_star);
+        FU.open_tab(1);
+      } 
+      if (GV.suko_data.view_bonus_seed && !GV.suko_data.max_seed) {
+        console.log("--- open_tab ---");
+        console.log("view_bonus_seed:" + GV.suko_data.view_bonus_seed);
+        console.log("max_seed:" + GV.suko_data.max_seed);
+        FU.open_tab(0);
+      }
+    }, 15 * 1000)
+
     // フォローリストcheckのためのインターバル 海老名マルシェ
     setInterval(function () {
       FU.Room404Check();
@@ -457,9 +475,9 @@ $(function () {
         FU.closeTab();
         return;
       } else {
-        console.log('https://www.showroom-live.com/undefined 監視');
+        // console.log('https://www.showroom-live.com/undefined 監視');
         for (var i = 1; i < tabs.length; i++) {
-          console.log(tabs[i].url);
+          // console.log(tabs[i].url);
           if (tabs[i].url == 'https://www.showroom-live.com/undefined') {
             console.log('閉じるよ' + tabs[i].url);
            chrome.tabs.remove(tabs[i].id, null);
@@ -467,6 +485,17 @@ $(function () {
         } 
       }
     });  
+  }, FU.open_tab = function (type) {
+     var re_value = JSON.stringify({
+     n: 1,    // 開くルーム数
+     w: 200,  // 待ち秒数
+     ty: type,   // 1=星 0=種
+     gt: 1,   // 0=通常 1= 2=捨て
+     tb: 1,   // 不明
+     vb: 1,   // 視聴ボーナス取得済みルームを除外 
+     cl: 1    // 自動クローズ
+   })
+    FU.tabOpen(JSON.parse(re_value));  
   }, FU.followRoomCheck = function () {
     // add 海老名マルシェ
     var e = GV.sru + "/follow";
@@ -484,8 +513,7 @@ $(function () {
         for (var _ = 0; _ < o.length; _++) {
           if (n[_].classList.contains('is-active')) {
             var c = i[_].pathname.replace("/", "");
-              console.log(t[_]);
-              console.log(c);
+              console.log(c + ":::::" + t[_].innerText);
               var url = GV.sru + "/" + c;
               FU.followopen(url);
           }
@@ -500,16 +528,31 @@ $(function () {
       }
   });
     }, FU.followopen = function (open_url) {
+      console.log("-- FU.followopen --");
     // add 海老名マルシェ
     chrome.tabs.getAllInWindow(null, function(tabs) {
       if (tabs.length == 0) {return;}
-      
+
       for (var i = 0, tab; tab = tabs[i]; i++) {
-        console.log(tab.url);
-        if (!tab.url.indexOf('devtools:')) {
+        if (tabs[i].url == 'https://www.showroom-live.com/undefined') {
+         chrome.tabs.remove(tabs[i].id, null);
+         continue;
+        }
+
+        if (tab) {console.log(tab.url);}
+        // console.log(premium_room_url);
+        if (tab.url && (tab.url.indexOf("premium_live") > 0)) {
+          chrome.tabs.remove(tabs[i].id, null);
+          console.log(tab.url.indexOf("premium_live"));
+          continue;
+        }
+
+        if (tab.url.indexOf('devtools:') > 0) {
           console.log('devtools:は邪悪');
           return;
         }
+
+
         if (tab.url && tab.url == open_url) {
           return;
         }
