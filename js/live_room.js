@@ -878,9 +878,9 @@ $(function () {
               if (c) {
                 console.log('マックスじゃないギフトはありません');
                 if (SRApp.store.get("isOfficial")) {
-                  GV.suko.max_star = true;
+                  GV.suko.max_star = GV.user_data.gift_list.normal[0].free_num;
                 } else {
-                  GV.suko.max_seed = true;
+                  GV.suko.max_seed = GV.user_data.gift_list.normal[0].free_num;
                 }
                 FU.save("suko", GV.suko);
                 
@@ -889,14 +889,23 @@ $(function () {
               } else {
                 console.log('マックスじゃないギフトありました');
                 if (SRApp.store.get("isOfficial")) {
-                  GV.suko.max_star = false;
+                  GV.suko.max_star = GV.user_data.gift_list.normal[0].free_num;
                 } else {
-                  GV.suko.max_seed = false;
+                  GV.suko.max_seed = GV.user_data.gift_list.normal[0].free_num;
                 }
                 FU.save("suko", GV.suko);
                 if (!$("#view_bonus").find(".icon").hasClass("on")) {FU.viewBonusOn();}
                 GV.pop_n = GV.pop_n ? GV.pop_n + 1 : 0;
                 FU.pop_c(GV.pop_n, FU.local_url("/img/view_bonus_2.png"), "自動視聴ボ ブロック 解除");
+              }
+
+              if (GV.user_data.gift_list.normal[0].free_num >= 90) {
+                if (SRApp.store.get("isOfficial")) {
+                  GV.suko.max_star = GV.user_data.gift_list.normal[0].free_num;
+                } else {
+                  GV.suko.max_seed = GV.user_data.gift_list.normal[0].free_num;
+                }
+                FU.save("suko", GV.suko);
               }
             }
           }, 1 == GV.url_para.gt || 2 == GV.url_para.gt ? FU.bonusGetMode() : (FU.view_bonus_switch(), setTimeout(function () {

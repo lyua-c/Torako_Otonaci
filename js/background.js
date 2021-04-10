@@ -152,24 +152,28 @@ $(function () {
     // フォローリストcheckのためのインターバル 海老名マルシェ
     setInterval(function () {
       FU.followRoomCheck();
-    }, 8 * 1000)
+    }, 10 * 1000)
 
     // 無料ギフトのためのインターバル 海老名マルシェ
     setInterval(function () {
       FU.configLoad();
-      if (GV.suko_data.view_bonus_star && !GV.suko_data.max_star) {
+      console.log("view_bonus_star:" + GV.suko_data.view_bonus_star);
+      console.log("max_star:" + GV.suko_data.max_star);
+      if (GV.suko_data.view_bonus_star && (GV.suko_data.max_star < 90)) {
         console.log("--- open_tab ---");
-        console.log("view_bonus_star:" + GV.suko_data.view_bonus_star);
-        console.log("max_star:" + GV.suko_data.max_star);
         FU.open_tab(1);
       } 
-      if (GV.suko_data.view_bonus_seed && !GV.suko_data.max_seed) {
+    }, 33 * 1000)
+    setInterval(function () {
+      FU.configLoad();
+      console.log("view_bonus_seed:" + GV.suko_data.view_bonus_seed);
+      console.log("max_seed:" + GV.suko_data.max_seed);
+      
+      if (GV.suko_data.view_bonus_seed && (GV.suko_data.max_seed < 90)) {
         console.log("--- open_tab ---");
-        console.log("view_bonus_seed:" + GV.suko_data.view_bonus_seed);
-        console.log("max_seed:" + GV.suko_data.max_seed);
         FU.open_tab(0);
       }
-    }, 15 * 1000)
+    }, 33 * 1000)
 
     // フォローリストcheckのためのインターバル 海老名マルシェ
     setInterval(function () {
@@ -547,7 +551,7 @@ $(function () {
           continue;
         }
 
-        if (tab.url.indexOf('devtools:') > 0) {
+        if (tab.url.indexOf('devtools:') >= 0) {
           console.log('devtools:は邪悪');
           return;
         }
