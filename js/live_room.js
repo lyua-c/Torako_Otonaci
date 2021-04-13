@@ -139,17 +139,18 @@ $(function () {
             
             if (document.location.pathname == '/ad4bc3574905' // 深紅(種)
             || document.location.pathname == '/sonia-tosaka' // 遠坂ソニア　星
-            || document.location.pathname == '/7b9a03257341' // 心乃花room
+            || document.location.pathname == '/7b9a03257341' // 心乃花room　種
             || document.location.pathname == '/yuzuhamakura' // まくらちゃん　星
-            || document.location.pathname == '/ea6b75258274'// こんこんちあ★るーむ 
+            || document.location.pathname == '/ea6b75258274'// こんこんちあ★るーむ 　種
             || document.location.pathname == '/YuNiKanoKorabo_0111'// ぽんちゃん　星
             || document.location.pathname == '/revorn_02_0002'// サクラシャスリー 星
-            || document.location.pathname == '/k_sunoki_2020'// 紅乃茶すのき　星
+//            || document.location.pathname == '/k_sunoki_2020'// 紅乃茶すのき　星
             || document.location.pathname == '/15f674301310'// 肉詰テル
             || document.location.pathname == '/Korpokkur01'// 杠 小雪　星
             || document.location.pathname == '/s_mashiro0'// 白雪ましろ　星
-            || document.location.pathname == '/ShibukiMayu'// 紫吹真雪
-            || document.location.pathname == '/4f0d63643859'// しももふわわ
+            || document.location.pathname == '/ShibukiMayu'// 紫吹真雪　星
+            || document.location.pathname == '/4f0d63643859'// しももふわわ　種
+            || document.location.pathname == '/revorn_03_0012'// 一ノ宮満月　星
             || document.location.pathname == '/e4b473019730'// なぞのそらみ　星
             || document.location.pathname == '/209214199160'// さくらば幼女　種
             || document.location.pathname == '/Serimaru' // セリ丸　星
@@ -498,6 +499,7 @@ $(function () {
             });
             var img = GV.gift_u + p.id + "_s.png",
               msg = "× " + p.n + " (残り" + d.num + "個)";
+              FU.freeGiftMax;
             FU.pop_c(p.id, img, msg), GV.now_post_li[p.id] = !1
           }).fail(function (e) {
             FU.currentUser(), GV.now_post_li[p.id] = !1, GV.debug && console.log("【E】")

@@ -517,7 +517,7 @@ $(function () {
         for (var _ = 0; _ < o.length; _++) {
           if (n[_].classList.contains('is-active')) {
             var c = i[_].pathname.replace("/", "");
-              console.log(c + ":::::" + t[_].innerText);
+//              console.log(c + ":::::" + t[_].innerText);
               var url = GV.sru + "/" + c;
               FU.followopen(url);
           }
@@ -532,7 +532,7 @@ $(function () {
       }
   });
     }, FU.followopen = function (open_url) {
-      console.log("-- FU.followopen --");
+//      console.log("-- FU.followopen --");
     // add 海老名マルシェ
     chrome.tabs.getAllInWindow(null, function(tabs) {
       if (tabs.length == 0) {return;}
@@ -540,10 +540,10 @@ $(function () {
       for (var i = 0, tab; tab = tabs[i]; i++) {
         if (tabs[i].url == 'https://www.showroom-live.com/undefined') {
          chrome.tabs.remove(tabs[i].id, null);
-         continue;
+         return;
         }
 
-        if (tab) {console.log(tab.url);}
+//        if (tab) {console.log(tab.url);}
         // console.log(premium_room_url);
         if (tab.url && (tab.url.indexOf("premium_live") > 0)) {
           chrome.tabs.remove(tabs[i].id, null);
@@ -552,7 +552,7 @@ $(function () {
         }
 
         if (tab.url.indexOf('devtools:') >= 0) {
-          console.log('devtools:は邪悪');
+//          console.log('devtools:は邪悪');
           return;
         }
 
