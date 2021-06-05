@@ -66,17 +66,19 @@ $(function () {
 
           if (GV.elap_time_t = et_t, GV.elapsed_time_noti && !GV.elt && FU.el_noti(et), GV.start_time ? $("#label-start-time").text(GV.start_time.h + ":" + GV.start_time.m + ":" + GV.start_time.s + "～" + (GV.elap_time ? "(" + et_t.h + ":" + et_t.m + ":" + et_t.s + ")" : "")) : GV.start_time = FU.timeChange(SRApp.store.get("startedAt")), 0 != SRApp.store.get("liveId")) {
             // 1秒ごとにカウントをしている部分
-            if (GV.comm_n < 50 && !$("#auto_count .icon").hasClass("on")) {
+            if (GV.comm_n < 50 && !$("#auto_count .icon").hasClass("on") && !GV.auto_count_c) {
               if ($(".js-follow").hasClass("active")) {
                 // 1個ギフト投げるよ！！
           	    FU.autoCountOn();
-          	    console.log(document.title + '自動カウントを開始します');  
-                console.log(document.title + '自動1投げ');  
-                var li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
-                for (var i = 0, len = li.length; i < len; i++) FU.freeGiftPost({
-                  id: li[i],
-                  n: 1
-                });                
+          	    console.log(document.title + '自動カウントを開始します');
+                console.log(document.title + '自動1投げ');
+                if ($("#one_post img").hasClass("on")) {
+                  var li = SRApp.store.get("isOfficial") ? [1, 1001, 1002, 1003, 2] : [1501, 1502, 1503, 1504, 1505];
+                 for (var i = 0, len = li.length; i < len; i++) FU.freeGiftPost({
+                   id: li[i],
+                   n: 1
+                 });
+                }           
               }  
            }
 
@@ -136,25 +138,40 @@ $(function () {
             if ($("#get_icon_area .view").hasClass("get") && !$(".js-follow").hasClass("active")) {
               location.href = "https://www.showroom-live.com/undefined";
             }
-            
-            if (document.location.pathname == '/ad4bc3574905' // 深紅(種)
-            || document.location.pathname == '/sonia-tosaka' // 遠坂ソニア　星
-            || document.location.pathname == '/7b9a03257341' // 心乃花room　種
-            || document.location.pathname == '/yuzuhamakura' // まくらちゃん　星
+
+            if (!GV.suko.view_bonus_star && $("#get_log_area .star .reset_1").css("color") == "rgb(255, 0, 0)") {GV.suko.view_bonus_star = true;FU.save("suko", GV.suko);}; 
+            if (!GV.suko.view_bonus_seed && $("#get_log_area .seed .reset_1").css("color") == "rgb(255, 0, 0)") {GV.suko.view_bonus_seed = true;FU.save("suko", GV.suko);}; 
+
+            if (((GV.suko.max_star > 40 && SRApp.store.get("isOfficial")) || (GV.suko.max_seed > 40 && !SRApp.store.get("isOfficial"))) && (
+              document.location.pathname == '/ad4bc3574905' // 深紅(種)
+//            || document.location.pathname == '/7b9a03257341' // 心乃花room　種
             || document.location.pathname == '/ea6b75258274'// こんこんちあ★るーむ 　種
             || document.location.pathname == '/YuNiKanoKorabo_0111'// ぽんちゃん　星
             || document.location.pathname == '/revorn_02_0002'// サクラシャスリー 星
-//            || document.location.pathname == '/k_sunoki_2020'// 紅乃茶すのき　星
-            || document.location.pathname == '/15f674301310'// 肉詰テル
+//            || document.location.pathname == '/15f674301310'// 肉詰テル
             || document.location.pathname == '/Korpokkur01'// 杠 小雪　星
-            || document.location.pathname == '/s_mashiro0'// 白雪ましろ　星
-            || document.location.pathname == '/ShibukiMayu'// 紫吹真雪　星
+            || document.location.pathname == '/Carbuncle16'// イルミナと謳う箱庭　星
+            || document.location.pathname == '/386ad3018633'// いづき　種
+            || document.location.pathname == '/f9c475219965'//  スーꕤ*スライム新人VTuber　種
+            || document.location.pathname == '/d87f55279741'// 茶倉伽音　種
+//            || document.location.pathname == '/22ab62922976'// 愛猫カナ　種
+//            || document.location.pathname == '/s_mashiro0'// 白雪ましろ　星
+//            || document.location.pathname == '/ShibukiMayu'// 紫吹真雪　星
+            || document.location.pathname == '/VCHET2G_0116'// あきひこ　星
+            || document.location.pathname == '/schooldays-agehauka-16'// みくま　星
+            || document.location.pathname == '/VCHET2G_0324'// 佐倉ゆかり　星
+            || document.location.pathname == '/spring_kira03'// 星海キラ　星
             || document.location.pathname == '/4f0d63643859'// しももふわわ　種
+            || document.location.pathname == '/06c505400204'// 神野みろく　種
             || document.location.pathname == '/revorn_03_0012'// 一ノ宮満月　星
-            || document.location.pathname == '/e4b473019730'// なぞのそらみ　星
-            || document.location.pathname == '/209214199160'// さくらば幼女　種
+//            || document.location.pathname == '/e4b473019730'// なぞのそらみ　種
+            || document.location.pathname == '/VCHET2G_0519'// 柚月　星
+            || document.location.pathname == '/besta_daifuku'// だいふくさんの山の茶屋　星
             || document.location.pathname == '/Serimaru' // セリ丸　星
-            ) {
+            || document.location.pathname == '/rosenark-akari06' // ✝︎闇月アカリ✝︎
+            || (document.location.pathname == '/278374077650' && GV.suko.max_seed > 50) // たてにくるくる
+            || (document.location.pathname == '/VCHET2G_0282' && GV.suko.max_star > 70) // よしな
+            )) {
               if ($("#ten_post img").hasClass("on")) {
                 console.log('ここ推しのルームで今１０投げれるやんけ！！');
                 FU.freeGiftMax();
@@ -218,7 +235,10 @@ $(function () {
                 FU.getLogText()
               } catch (e) {}
               setTimeout(function () {
-                GV.reset_se_star = !1
+                GV.reset_se_star = !1;
+                console.log('GV.suko.view_bonus_star = true reset');
+                GV.suko.view_bonus_star = true;
+                FU.save("suko", GV.suko);
               }, 1e4)
             }
             ret = GV.seed_log.re_1 < GV.seed_log.re_2 ? GV.seed_log.re_2 : GV.seed_log.re_1;
@@ -228,7 +248,10 @@ $(function () {
                 FU.getLogText()
               } catch (e) {}
               setTimeout(function () {
-                GV.reset_se_seed = !1
+                GV.reset_se_seed = !1;
+                console.log('GV.suko.view_bonus_seed = true reset');
+                GV.suko.view_bonus_seed = true;
+                FU.save("suko", GV.suko);
               }, 1e4)
             }
           } catch (e) {}
@@ -459,7 +482,7 @@ $(function () {
             }
 
             try {
-              $("#gift_area .user_name").text(GV.user_data.name).attr("title", "ユーザーレベル: Lv." + GV.user_data.fan_level + "\n累計ポイント: " + GV.user_data.contribution_point.toLocaleString() + " pt\n次のレベルまで: " + GV.user_data.next_level_point.toLocaleString() + " pt"), $("#gift_area .show_gold").text("Show Gold: " + GV.user_data.gold.toLocaleString() + " G")
+              $("#gift_area .user_name").text(GV.user_data.name).attr("title", "ユーザーレベル: Lv." + GV.user_data.fan_level + "\n累計ポイント: " + GV.user_data.contribution_point.toLocaleString() + " pt\n次のレベルまで: " + (GV.user_data.next_level_point - GV.user_data.contribution_point).toLocaleString() + " pt" + "\nこのルームの訪問回数: " + GV.room_view_n + "\nこの枠のコメント回数: " + GV.comm_n), $("#gift_area .show_gold").text("Show Gold: " + GV.user_data.gold.toLocaleString() + " G")
             } catch (e) {}
             gl[0] && 0 != h_n ? ($("#rest_post img").addClass("on"), $("#rest_post p").text(h_n)) : ($("#rest_post img").removeClass("on"), $("#rest_post p").text("?"))
           })
@@ -552,6 +575,15 @@ $(function () {
                 }, 1e3)))
               }
               if (50 == GV.comm_n && !t) c = FU.countEndComm();
+
+              // カウントダウンするぜ！
+              if (!isNaN(c)) {
+                if (c <= 50)　{c = 50 - Number(c);}
+                if (c === 0 && document.location.pathname == '/VCHET2G_0282') {c= '初めまして(' + GV.room_view_n + '回目';}
+                if (c === 0) {c = $('button[name="comment"]')[0].innerText;}
+              }
+
+
               $.post("https://www.showroom-live.com/api/live/post_live_comment", {
                 live_id: SRApp.store.get("liveId"),
                 comment: String(c),
@@ -562,7 +594,7 @@ $(function () {
                   ok: 1,
                   comment: String(d.comment),
                   room_id: d.room_id
-                }), GV.comm_n++, GV.re_count = 1e3, GV.comm_n > 50 ? (FU.autoCountOff(), GV.count_end_se && !t && FU.soundPop("count.mp3", Number($("#config_area .count_end_se .se_volume").attr("value")) / 100)) : $("#auto_count").removeClass("end").find("p").text(GV.comm_n - 1), FU.save("count_log_" + SRApp.store.get("liveId"), {
+                }), GV.comm_n++, GV.re_count = 800, GV.comm_n > 50 ? (FU.autoCountOff(), GV.count_end_se && !t && FU.soundPop("count.mp3", Number($("#config_area .count_end_se .se_volume").attr("value")) / 100)) : $("#auto_count").removeClass("end").find("p").text(GV.comm_n - 1), FU.save("count_log_" + SRApp.store.get("liveId"), {
                   n: GV.comm_n,
                   t: GV.now_unix_time
                 }), setTimeout(function () {
@@ -571,7 +603,7 @@ $(function () {
               }).fail(function (e) {
                 t && setTimeout(function () {
                   FU.commentPost(c, t)
-                }, 200), t || (GV.re_count_t = !0, GV.re_count > 300 && (GV.re_count -= 100), setTimeout(function () {
+                }, 400), t || (GV.re_count_t = !0, GV.re_count > 300 && (GV.re_count -= 100), setTimeout(function () {
                   GV.re_count_t = !1, FU.commentPost(GV.comm_n, t)
                 }, GV.comm_post ? 3e3 : GV.re_count))
               })
@@ -809,9 +841,12 @@ $(function () {
                   else l = GV.seed_log, ty = "seed";
                   if (l.re_1 > GV.now_unix_time_c) {
                     msg = "無料ギフトの獲得は" + GV[ty + "_re_get_time"] + "まで制限されています";
+
                     if (SRApp.store.get("isOfficial")) {
+                      console.log('GV.suko.view_bonus_star = false');
                       GV.suko.view_bonus_star = false;
                     } else {
+                      console.log('GV.suko.view_bonus_seed = false');
                       GV.suko.view_bonus_seed = false;
                     }
                     FU.save("suko", GV.suko);
@@ -872,7 +907,7 @@ $(function () {
             if (GV.suko.live_config.auto_block) {
               await FU.currentUser();
               for (var d = GV.user_data.gift_list.normal, c = !0, i = 0; i < 5; i++)
-                if (99 != d[i].free_num) {
+                if (90 >= d[i].free_num) {
                   c = !1;
                   console.log(d[i].gift_id + ' : ' + d[i].free_num);
                 }
@@ -1124,17 +1159,6 @@ $(function () {
               else {
                 var dt2 = FU.timeChange(GV.re_2);
                 $("#get_log_area ." + type + " .reset_2").text(dt2.h + ":" + dt2.m + ":" + dt2.s).css("color", GV.re_2 < GV.now_unix_time_c && 0 != GV.re_2 ? "red" : "#111").attr("title", GV.re_2)
-              }
-
-              // 星回収リセットかかっていたら
-              if (GV.re_1 < GV.now_unix_time_c) {
-                GV.suko.view_bonus_star = true;
-                FU.save("suko", GV.suko);
-              } 
-
-              if (GV.re_2 < GV.now_unix_time_c) {
-                GV.suko.view_bonus_seed = true;
-                FU.save("suko", GV.suko);
               }
 
               ta.find(".total").text(GV.vi_n), GV[type + "_log"] = {
@@ -1616,6 +1640,8 @@ $(function () {
               } : function () {}
             },
             one_post: function (d) {
+              $("#rest_post").css("display", "none");
+              
               1 == d ? $("#one_post").css("display", "inline-block") : $("#one_post").css("display", "none")
             },
             onlive_icon: function (d) {

@@ -50,7 +50,7 @@
   height: 45px;
   background: #111;
   opacity: 0.3;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   cursor:pointer;
   vertical-align: top;
   border: 0;

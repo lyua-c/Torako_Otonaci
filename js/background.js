@@ -494,7 +494,7 @@ $(function () {
      n: 1,    // 開くルーム数
      w: 200,  // 待ち秒数
      ty: type,   // 1=星 0=種
-     gt: 1,   // 0=通常 1= 2=捨て
+     gt: 1,   // 0=通常 1=取得 2=捨て
      tb: 1,   // 不明
      vb: 1,   // 視聴ボーナス取得済みルームを除外 
      cl: 1    // 自動クローズ
@@ -534,7 +534,7 @@ $(function () {
     }, FU.followopen = function (open_url) {
 //      console.log("-- FU.followopen --");
     // add 海老名マルシェ
-    chrome.tabs.getAllInWindow(null, function(tabs) {
+    chrome.tabs.query({windowType:'normal'}, function(tabs) {
       if (tabs.length == 0) {return;}
 
       for (var i = 0, tab; tab = tabs[i]; i++) {
