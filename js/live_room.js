@@ -579,8 +579,10 @@ $(function () {
               // カウントダウンするぜ！
               if (!isNaN(c)) {
                 if (c <= 50)　{c = 50 - Number(c);}
+                /*
                 if (c === 0 && document.location.pathname == '/VCHET2G_0282') {c= '初めまして(' + GV.room_view_n + '回目';}
                 if (c === 0) {c = $('button[name="comment"]')[0].innerText;}
+                */
               }
 
 
